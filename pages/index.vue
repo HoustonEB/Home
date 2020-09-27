@@ -5,8 +5,7 @@
       <h1 class="title">Home</h1>
       <div class="links">
         <a
-          href="https://nuxtjs.org/"
-          target="_blank"
+          href="/blog"
           rel="noopener noreferrer"
           class="button--green"
         >
