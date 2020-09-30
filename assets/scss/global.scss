@@ -1,9 +1,22 @@
 @import './reset.scss';
-
-$theme-bg-color: #fff;
-$theme-font-color: #00c58e;
-
+@import '~/assets/scss/variable.scss';
 
 html {
-    scroll-behavior: smooth
+    height: 100%;
+    scroll-behavior: smooth;
+    background-color: $page-bgc;
+    body {
+        background-color: $page-bgc;
+    }
+    a {
+        &:hover {
+            color: $theme-font-color;
+        }
+    }
+}
+
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

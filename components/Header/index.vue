@@ -1,14 +1,27 @@
 <template>
-    <div class="blog-header-wrapper">
-        <div class="h-l">
-            <img :src="imgSrc" alt="" />
-        </div>
-        <div class="h-r">
-            <ul>
-                <li v-for="item in categoryListDuplicate">
-                    <a :href="item.href">{{ item.name }}</a>
-                </li>
-            </ul>
+    <div :class="[classPrefix + '-header-wrapper']">
+        <div :class="[classPrefix + '-header-content-wrapper']">
+            <div class="h-l">
+                <ul>
+                    <li v-for="item in categoryListDuplicate">
+                        <a :href="item.href">{{ item.name }}</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="h-r">
+                <div class="header-search-box">
+                    <Input 
+                    :classPrefix="classPrefix" 
+                    placeholder="Search"
+                    style="width: 168px;"
+                    :search="onSearch"
+                    :change="onChange"
+                    :loading="loading"/>
+                </div>
+                <div class="avatar-box">
+                    <img :src="imgSrc" alt="" />
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -17,45 +30,87 @@ export default {
     props: {
         imgSrc: String,
         categoryList: Array,
+        classPrefix: String,
     },
-    data: function() {
+    data: function () {
         return {
-            categoryListDuplicate: this.categoryList.reverse()
+            loading: false,
+            categoryListDuplicate: this.categoryList,
         }
     },
+    methods: {
+        onSearch: function(val, e) {
+            console.log(val, e)
+        },
+        onChange: function(e) {
+            this.loading = true;
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    this.loading = false;
+                    resolve(1)
+                }, 1000)
+            })
+            console.log('search', e.target.value)
+        }
+    }
 }
 </script>
-<style lang="scss">
-@import '~/assets/scss/global.scss';
+<style lang="scss" scoped>
+@import '~/assets/scss/variable.scss';
 
 $header-height: 60px;
-.blog-header-wrapper {
+$class-prefix: 'home';
+$page-max-width: 960px;
+
+.#{$class-prefix}-header-wrapper {
     width: 100%;
     height: $header-height;
     background-color: $theme-bg-color;
     color: $theme-font-color;
-    padding: 0 40px;
-    display: flex;
-    .h-l {
-        // float: left;
-        line-height: $header-height;
-        flex: 1;
-        img {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 250;
+    transition: all .5;
+    border-bottom: 1px solid #eee;
+    .#{$class-prefix}-header-content-wrapper {
+        position: relative;
+        display: flex;
+        height: $header-height;
+        margin: 0 auto;
+        max-width: $page-max-width;
+        .h-l {
+            flex: 4;
+            ul {
+                display: flex;
+                height: 100%;
+            }
+            li {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 0 10px;
+                font-size: 14px;
+                cursor: pointer;
+                a {
+                    color: $theme-font-color;
+                }
+            }
         }
-    }
-    .h-r {
-        // float: right;
-        flex: 4;
-        line-height: $header-height;
-        li {
-            float: right;
-            padding: 0 10px;
-            a {
-                color: $theme-font-color;
+        .h-r {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+            font-size: 14px;
+            img {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                overflow: hidden;
+            }
+            .header-search-box, .avatar-box {
+                padding: 0 15px;
             }
         }
     }

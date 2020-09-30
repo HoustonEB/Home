@@ -6,10 +6,21 @@ tags:
 - module
 - RequireJS
 ---
+
+# h1
+---
+
+## h2
+---
+
 ### 载入脚本文件
+---
+
 RequireJS采用一种不同的方法去加载脚本文件和用传统的用`<script>`tags.它也可以运行的快速和被优化过,RequireJS首要的目的是模块化代码.鼓励用{% label info@moduleIDs %}来代替script标签的URLs.
 RequireJS加载所有代码根据一个基础的路径(baseUrl).一个页面的入口js文件用`data-main 属性`来定义.
 ### data-main 入口点
+---
+
 ```html
 <!--when require.js loads it will inject another script tag
     (with async attribute) for scripts/main.js-->
@@ -52,7 +63,12 @@ require(['scripts/config'], function() {
 });
 </script>
 ```
+# h1
+---
+## h2
+---
 ### 定义一个模块
+---
 1. 如果模块没有依赖项,只是简单的键值对,只需要传入对象.
 ```js
 //Inside file my/shirt.js:
@@ -92,6 +108,7 @@ define(["./cart", "./inventory"], function(cart, inventory) {
 );
 ```
 ### 配置项
+---
 ```html
 <script src="scripts/require.js"></script>
 <script>

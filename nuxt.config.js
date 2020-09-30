@@ -1,5 +1,16 @@
 const marked = require('marked');
-const renderer = new marked.Renderer();
+let renderer = new marked.Renderer();
+Object.assign(renderer, {
+  heading(text, level, raw, slugger) {
+    let id = slugger.slug('heading');
+    return `
+            <h${level} id="${id}" data-head-id="${id}">
+              <a class="post-anchor" data-id="${id}" data-text="${text}" data-level="${level}" href="#${id}">
+              </a>
+              ${text}
+            </h${level}>`;
+  }
+});
 
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
@@ -62,24 +73,29 @@ export default {
         {
           test: /\.md$/,
           use: [
-              {
-                  loader: "html-loader"
-              },
-              {
-                  loader: "markdown-loader",
-                  options: {
-                      renderer,
-                      pedantic: false,
-                      gfm: true,
-                      breaks: true,
-                      sanitize: false,
-                      smartLists: true,
-                      smartypants: true,
-                      xhtml: false
-                  }
+            {
+              loader: "html-loader"
+            },
+            {
+              loader: "markdown-loader",
+              options: {
+                renderer,
+                pedantic: false,
+                gfm: true,
+                breaks: true,
+                sanitize: false,
+                smartLists: true,
+                smartypants: true,
+                xhtml: false,
+                // walkTokens: (token) => {
+                //   if (token.type === 'heading') {
+                //     token.depth += 1;
+                //   }
+                // }
               }
+            }
           ]
-      }
+        }
       )
     }
   }
