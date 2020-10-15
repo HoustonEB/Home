@@ -15,7 +15,7 @@ weinre(Web Inspector Remote).是一种远程调试的工具,在电脑上可以�
 - Debug客户端（client）：本地的Web Inspector调试客户端；
 - Debug服务端（agent）：一个HTTP Server，为目标页面与Debug客户端建立通信。
 
-{% asset_img 1.png %}
+![1.png](./weinre/1.png)
 <!-- more -->
 ## 用法
 1. mac
@@ -26,7 +26,7 @@ npm i -g weinre
 // 开启服务
 weinre --boundHost -all-
 ```
-{% asset_img 2.jpg %}
+![1.png](./weinre/2.jpg)
 
 ## options
 --help : 显示Weinre的Help

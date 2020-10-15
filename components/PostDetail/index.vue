@@ -5,7 +5,7 @@
             v-html="mdContent"
         ></div>
         <div class="anchor-list-box">
-           <Anchor :catalogData="catalogData"/>
+            <Anchor :catalogData="catalogData" />
         </div>
     </div>
 </template>
@@ -38,8 +38,8 @@ export default {
     },
     methods: {
         getAnchorData: function () {
-            let anchorList = [...document.querySelectorAll('.post-anchor')]
-            this.catalogData = anchorList.map((item) => {
+            let headList = [...document.querySelectorAll('.post-anchor')]
+            this.catalogData = headList.map((item) => {
                 return {
                     id: item.getAttribute('data-id'),
                     title: item.getAttribute('data-text'),
@@ -48,12 +48,12 @@ export default {
             })
         },
     },
-    mounted() {
+    mounted: function () {
         highlightCode()
         this.getAnchorData()
     },
 
-    updated() {
+    updated: function () {
         highlightCode()
     },
 }
@@ -71,8 +71,24 @@ export default {
     color: #333;
     .md-comp-content {
         flex: 1;
-        padding: 24px;
+        padding: 24px 35px 24px;
         background-color: #fff;
+        &/deep/ .post-anchor {
+            position: absolute;
+            &:hover {
+                img {
+                    visibility: visible;
+                }
+            }
+            img {
+                position: absolute;
+                top: 6px;
+                left: -25px;
+                width: 20px;
+                visibility: hidden;
+                z-index: 1;
+            }
+        }
     }
     .anchor-list-box {
         width: 240px;

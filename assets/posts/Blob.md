@@ -7,8 +7,7 @@ tags:
 ---
 ## Blob对象
 Blob, Binary Large Object的缩写.代表二进制类型的大对象.
-在Web中，Blob类型的对象表示不可变的类似文件对象的原始数据，通俗点说，就是Blob对象是二进制数据，但它是类似文件对象的二进制数据，因此可以像操作File对象一样操作Blob对象，实际上，File继承自Blob。
-`Blob(blobParts[, options])`
+在Web中，Blob类型的对象表示不可变的类似文件对象的原始数据，通俗点说，就是Blob对象是二进制数据，但它是类似文件对象的二进制数据，因此可以像操作File对象一样操作Blob对象，实际上，File继承自Blob。`Blob(blobParts[, options])`
 参数说明：
 blobParts：数组类型，数组中的每一项连接起来构成Blob对象的数据，数组中的每项元素可以是ArrayBuffer, ArrayBufferView, Blob, DOMString 。
 options：可选项，字典格式类型，可以指定如下两个属性：

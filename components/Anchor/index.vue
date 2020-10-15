@@ -4,9 +4,13 @@
         <ul>
             <li v-for="{ id, title, level } in catalogData">
                 <a
-                    :class="['catalog-link', 'level-' + level, activeLinkId === '#' + id ? 'active' : '']"
+                    :class="[
+                        'catalog-link',
+                        'level-' + level,
+                        activeLinkId === '#' + id ? 'active' : '',
+                    ]"
                     :href="['#' + id]"
-                    @click="linkClick"
+                    @click.prevent="linkClick(id, $event)"
                 >
                     {{ title }}
                 </a>
@@ -27,52 +31,63 @@ export default {
         },
     },
     computed: {
-        activeLinkId: function() {
-            if(this.clickFlag) {
-                return this.$route.hash;
-            } else {
-                return this.isExitDomIds[0];
-            }
+        activeLinkId: function () {
+            return this.isExitDomIds[this.isExitDomIds.length - 1] || '#heading'
         }
     },
     data: function () {
         return {
             anchorDoms: [],
             isExitDomIds: [],
-            clickFlag: true
         }
     },
     methods: {
-        linkClick: function() {
-            this.clickFlag = true;
-        },
-        scroll: function() {
-            this.getAnchorDom();
-            this.clickFlag = false;
-            this.isExitDomIds = this.anchorDoms.map(item => {
-                let clientHeight = document.documentElement.clientHeight || document.body.clientHeight; // 视口的高度
-                let top = item.getBoundingClientRect().top; // 与视口顶部的距离
-                let bottom = item.getBoundingClientRect().bottom;
+        linkClick: function (id, e) {
+            // e.preventDefault();
+            // let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            let scrollHeadDom = document.getElementById(id)
+            let top = scrollHeadDom.getBoundingClientRect().top
 
-                if(bottom >= 0
-                && top <= clientHeight) {
-                    return '#' + item.getAttribute('id');
-                }
-            }).filter(Boolean);
-            console.log(this.isExitDomIds)
+            window.scrollBy(0, top - 120)
         },
-        getAnchorDom: function() {
-            this.anchorDoms = [...this.catalogData.map(item => {
+        scroll: function () {
+            this.isExitDomIds = this.anchorDoms
+                .map((item) => {
+                    let clientHeight =
+                        document.documentElement.clientHeight ||
+                        document.body.clientHeight // 视口的高度
+                    let top = item.getBoundingClientRect().top // 与视口顶部的距离
+                    let bottom = item.getBoundingClientRect().bottom
+
+                    if (top <= 150) {
+                        return '#' + item.getAttribute('id')
+                    }
+                })
+                .filter(Boolean)
+            // console.log(this.isExitDomIds)
+        },
+        getAnchorDom: function () {
+            let domArr = this.catalogData.map((item) => {
                 return document.getElementById(`${item.id}`)
-            })];
-        }
+            })
+            this.anchorDoms = [...domArr]
+        },
     },
-    mounted: function() {
+    mounted: function () {
         window.document.addEventListener('scroll', this.scroll)
     },
-    destroyed: function() {
+    updated: function () {
+        this.getAnchorDom()
+        this.anchorDoms.forEach((item) => {
+            item.children[0].onclick = (e) => {
+                e.preventDefault()
+                this.linkClick(item.id)
+            }
+        })
+    },
+    destroyed: function () {
         window.document.removeEventListener('scroll', this.scroll)
-    }
+    },
 }
 </script>
 <style lang="scss" scoped>
