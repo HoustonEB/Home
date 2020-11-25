@@ -11,14 +11,17 @@ jobs:
       uses: actions/checkout@master
     - name: reset
       run: |
+        npm install
+        npm run build
+        cd dist/
         ls
         git init
         git rm -r --cached .
-        rm -rf .gitignore
-    - name: Build and Deploy
-      uses: JamesIves/github-pages-deploy-action@master
-      env:
-        ACCESS_TOKEN: ${{ secrets.PAGES }}
-        BRANCH: gh-pages
-        FOLDER: dist
-        BUILD_SCRIPT: npm install && npm run build
+        git push git@github.com:HoustonEB/Home.git master:gh-pages
+    # - name: Build and Deploy
+    #   uses: JamesIves/github-pages-deploy-action@master
+    #   env:
+    #     ACCESS_TOKEN: ${{ secrets.PAGES }}
+    #     BRANCH: gh-pages
+    #     FOLDER: dist
+    #     BUILD_SCRIPT: npm install && npm run build
