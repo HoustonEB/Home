@@ -16,6 +16,7 @@ jobs:
       git init
       git rm -r --cached .
       rm -rf .gitignore
+    steps:
     - name: Build and Deploy
       uses: JamesIves/github-pages-deploy-action@master
       env:
