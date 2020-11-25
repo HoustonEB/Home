@@ -18,6 +18,7 @@ jobs:
         git init
         git rm -r --cached .
         git push git@github.com:HoustonEB/Home.git master:gh-pages
+    # git push --force --quiet git@github.com:HoustonEB/Home.git master:gh-pages
     # - name: Build and Deploy
     #   uses: JamesIves/github-pages-deploy-action@master
     #   env:
