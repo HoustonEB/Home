@@ -3,7 +3,7 @@
         <div class="post-l-box">
             <ul>
                 <li v-for="item in postsData">
-                    <nuxt-link no-prefetch :to="'/posts/' + item.title">
+                    <nuxt-link no-prefetch :to="{path: '/Posts/' + item.title}">
                         <div>
                             <p class="post-content-info">
                                 <a href="#">{{ item.authorName }}</a>

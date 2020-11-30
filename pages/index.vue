@@ -5,7 +5,7 @@
       <h1 class="title">Home</h1>
       <div class="links">
         <a
-          href="/home"
+          href="/Home"
           rel="noopener noreferrer"
           class="button--green"
         >
