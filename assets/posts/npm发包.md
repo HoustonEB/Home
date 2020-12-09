@@ -13,7 +13,7 @@ tags:
 `commitizen init cz-conventional-changelog --save-dev --save-exact`
 {% label info@commitizen %}包的作用提供`git cz`命令代替`git commit -m `
 
-{% asset_img add-commit.png %}
+![add-commit](./npm发包/add-commit.png)
 <!-- more -->
 2. **安装conventional-changelog-cli**
 `npm install -g conventional-changelog-cli`

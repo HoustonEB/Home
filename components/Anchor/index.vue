@@ -159,8 +159,16 @@ $class-prefix: 'blog';
                 margin-left: 45px;
             }
             &.level-4 {
-                font-size: 14px;
+                font-size: 13px;
                 margin-left: 55px;
+            }
+            &.level-5 {
+                font-size: 12px;
+                margin-left: 65px;
+            }
+            &.level-6 {
+                font-size: 12px;
+                margin-left: 75px;
             }
         }
     }

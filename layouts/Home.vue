@@ -18,11 +18,11 @@ export default {
             categoryList: [
                 {
                     name: '首页',
-                    href: '/home',
+                    href: '/Home',
                 },
                 {
                     name: '沸点',
-                    href: '/home',
+                    href: '/Home',
                 },
             ],
             blogSrc:

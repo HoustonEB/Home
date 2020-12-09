@@ -23,8 +23,8 @@ require.context返回三个属性
 1. resolve {Function} -接受一个参数request,request为components文件夹下面匹配文件的相对路径,返回这个匹配文件相对于整个工程的相对路径
 2. keys {Function} -返回匹配成功模块的名字组成的数组
 3. id {String} -执行环境的id,返回的是一个字符串,主要用在module.hot.accept,应该是热加载?
-{% asset_img 2.jpg %}
-{% asset_img 1.jpg %}
+![add-commit](./require-context/2.jpg)
+![add-commit](./require-context/1.jpg)
 这个Module模块和使用import导入的模块是一样的
 
 ## 使用场景

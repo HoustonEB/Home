@@ -21,7 +21,7 @@
         </div>
         <div class="post-r-box">
             <ul>
-                <li></li>
+                <li>1</li>
             </ul>
         </div>
     </div>

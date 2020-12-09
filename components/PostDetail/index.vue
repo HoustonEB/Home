@@ -73,6 +73,7 @@ export default {
         flex: 1;
         padding: 24px 35px 24px;
         background-color: #fff;
+        overflow: auto;
         &/deep/ .post-anchor {
             position: absolute;
             &:hover {
@@ -91,7 +92,7 @@ export default {
         }
     }
     .anchor-list-box {
-        width: 240px;
+        flex: 0 0 240px;
         padding: 24px;
         background-color: $page-bgc;
     }

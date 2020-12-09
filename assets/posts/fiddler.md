@@ -23,9 +23,9 @@ tags:
 <!-- more -->
 ### 使用
 ---
-{% asset_img  full-image fiddler1.jpg image %}
-{% asset_img fiddler2.jpg image %}
+![charles4](./fiddler/fiddler1.jpg)
+![charles4](./fiddler/fiddler2.jpg)
 fiddler要代理手机上的请求需满足
 - 代理地址需要填pc的ip地址`ifconfig`端口号是8888.
 - 手机和pc要再同一个网下.
-{% asset_img fiddler3.jpg image %}
+![charles4](./fiddler/fiddler3.jpg)
