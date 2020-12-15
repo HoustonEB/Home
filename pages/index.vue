@@ -2,7 +2,7 @@
   <div class="container">
     <div>
       <Logo />
-      <h1 class="title">Home</h1>
+      <h1 class="title">HOME</h1>
       <div class="links">
         <a
           href="/Home"
@@ -12,7 +12,7 @@
           Documentation
         </a>
         <a
-          href="https://github.com/nuxt/nuxt.js"
+          href="https://github.com/"
           target="_blank"
           rel="noopener noreferrer"
           class="button--grey"
@@ -21,6 +21,7 @@
         </a>
       </div>
     </div>
+    <ThemePicker />
   </div>
 </template>
 
@@ -29,6 +30,7 @@ export default {}
 </script>
 
 <style>
+
 .container {
   margin: 0 auto;
   min-height: 100vh;
@@ -36,6 +38,10 @@ export default {}
   justify-content: center;
   align-items: center;
   text-align: center;
+  /* background-image: linear-gradient(60deg, #64b3f4 0%, #c2e59c 100%); */
+  background-image: linear-gradient(-225deg, #2CD8D5 0%, #C5C1FF 56%, #FFBAC3 100%);
+  /* background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%); */
+  /* background-image: linear-gradient(-225deg, #69EACB 0%, #EACCF8 48%, #6654F1 100%); */
 }
 
 .title {
