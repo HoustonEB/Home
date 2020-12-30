@@ -60,7 +60,7 @@ export default {
 @import '~/assets/scss/variable.scss';
 
 $header-height: 60px;
-$class-prefix: 'home';
+$class-prefix: 'octopus';
 $page-max-width: 960px;
 $header-font-color: #71777c;
 

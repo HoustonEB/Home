@@ -21,17 +21,17 @@ let postsData = fileNames.map((item) => {
     }) // 修饰符s使.可以匹配\n换行符
     return data
 })
-console.log(ctx.keys(), 'ctx', fileNames)
+// console.log(ctx.keys(), 'ctx', fileNames)
 export default {
     props: {
         classPrefix: {
             type: String,
-            default: 'home',
+            default: 'octopus',
         },
     },
-    layout: 'Home',
+    layout: 'Octopus',
     data: function () {
-        console.log(this.$props, 'props')
+        // console.log(this.$props, 'props')
         return {
             postsData,
         }

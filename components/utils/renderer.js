@@ -17,9 +17,14 @@ const image = function (href, title, text) {
   return `<p v-viewer><img id="POST_IMG" src="${href}" alt="${text}" title="${title}" style="cursor: zoom-in"></p>`;
 }
 
+const link = function(href, title, text) {
+  return `<a href="${href}" target="_blank" title="${text}">${text}</a>`
+}
+
 Object.assign(renderer, {
   heading,
-  image
+  image,
+  link
 });
 
 export {

@@ -1,11 +1,11 @@
 <template>
   <div class="container">
-    <div>
+    <div class="content-box">
       <Logo />
-      <h1 class="title">HOME</h1>
+      <h1 class="title">OCTOPUS</h1>
       <div class="links">
         <a
-          href="/Home"
+          href="/Octopus"
           rel="noopener noreferrer"
           class="button--green"
         >
@@ -29,7 +29,7 @@
 export default {}
 </script>
 
-<style>
+<style lang="scss">
 
 .container {
   margin: 0 auto;
@@ -42,6 +42,11 @@ export default {}
   background-image: linear-gradient(-225deg, #2CD8D5 0%, #C5C1FF 56%, #FFBAC3 100%);
   /* background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%); */
   /* background-image: linear-gradient(-225deg, #69EACB 0%, #EACCF8 48%, #6654F1 100%); */
+  .content-box {
+    img {
+      width: 200px;
+    }
+  }
 }
 
 .title {
@@ -49,7 +54,7 @@ export default {}
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   display: block;
   font-weight: 300;
-  font-size: 100px;
+  font-size: 70px;
   color: #35495e;
   letter-spacing: 1px;
 }

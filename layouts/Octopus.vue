@@ -17,15 +17,15 @@ Vue.use(Viewer)
 export default {
     data: () => {
         return {
-            classPrefix: 'home',
+            classPrefix: 'octopus',
             categoryList: [
                 {
                     name: '首页',
-                    href: '/Home',
+                    href: '/Octopus',
                 },
                 {
                     name: '沸点',
-                    href: '/Home',
+                    href: '/Octopus',
                 },
             ],
             blogSrc: require('~/assets/images/cat.jpg')
@@ -40,7 +40,7 @@ export default {
 @import '~/assets/scss/variable.scss';
 
 $header-height: 60px;
-$class-prefix: 'home';
+$class-prefix: 'octopus';
 $page-max-width: 960px;
 
 .#{$class-prefix}-layout-wrapper {

@@ -68,7 +68,7 @@ export default {
 <style lang="scss" scoped>
 @import '~/assets/scss/variable.scss';
 
-$class-prefix: 'home';
+$class-prefix: 'octopus';
 
 .#{$class-prefix}-artical-wrapper {
     display: flex;
