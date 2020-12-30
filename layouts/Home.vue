@@ -10,7 +10,10 @@
     </div>
 </template>
 <script>
-
+import 'viewerjs/dist/viewer.css'
+import Viewer from 'v-viewer'
+import Vue from 'vue'
+Vue.use(Viewer)
 export default {
     data: () => {
         return {
@@ -25,8 +28,7 @@ export default {
                     href: '/Home',
                 },
             ],
-            blogSrc:
-                'https://avatars3.githubusercontent.com/u/31442858?s=460&u=6aaf81231201d85367f8296525a8b1886285635d&v=4',
+            blogSrc: require('~/assets/images/cat.jpg')
         }
     },
 }

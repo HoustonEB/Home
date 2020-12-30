@@ -1,9 +1,9 @@
 ---
+authorName: Yu
 title: react-native 开发汇总
 date: 2019-10-29 10:20:15
 categories: react-native
-tags:
-- react-native
+tags: react-native
 ---
 ## 标签
 

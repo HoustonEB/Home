@@ -1,10 +1,9 @@
 ---
+authorName: Yu
 title: RequireJS
 date: 2019-09-16 15:41:22
 categories: 模块化
-tags: 
-- module
-- RequireJS
+tags: module RequireJS
 ---
 
 ### 载入脚本文件

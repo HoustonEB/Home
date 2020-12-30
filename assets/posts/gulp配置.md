@@ -1,9 +1,9 @@
 ---
+authorName: Yu
 title: gulp配置
 date: 2019-09-21 16:57:17
 categories: gulp
-tags:
-- gulp
+tags: gulp
 ---
 ### gulp api
 1. task

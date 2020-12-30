@@ -1,8 +1,10 @@
 ---
+authorName: Yu
 title: Node
 tags: Node
 date: 2019-05-04 12:09:00
-# cover: /img/ml02cover2.jpg
+categories: 服务器
+tags: Nginx
 ---
 # 全局变量
 {% label primary@__dirname %}

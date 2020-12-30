@@ -1,9 +1,9 @@
 ---
+authorName: Yu
 title: Nginx
 date: 2019-09-02 13:44:56
 categories: 服务器
-tags: 
-- Nginx
+tags: Nginx
 ---
 
 ### 命令

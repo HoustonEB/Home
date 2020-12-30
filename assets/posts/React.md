@@ -1,9 +1,9 @@
 ---
+authorName: Yu
 title: React
 date: 2020-6-30 11:46:11
 categories: React
-tags:
- - React
+tags: React
 ---
 ### React Refs转发
 1. 在函数式组件中转发

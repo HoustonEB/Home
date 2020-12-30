@@ -6,7 +6,9 @@
 
 <script>
 export default {
-    layout: 'Home'
+    layout: 'Home',
+    mounted: function() {
+    }
 }
 </script>
 

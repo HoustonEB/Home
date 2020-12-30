@@ -3,6 +3,7 @@
         <div :class="[classPrefix + '-header-content-wrapper']">
             <div class="h-l">
                 <ul>
+                    <li><a href="/"><img src="~/assets/images/logo.svg" alt=""></a></li>
                     <li v-for="item in categoryListDuplicate">
                         <a :href="item.href">{{ item.name }}</a>
                     </li>
@@ -61,6 +62,7 @@ export default {
 $header-height: 60px;
 $class-prefix: 'home';
 $page-max-width: 960px;
+$header-font-color: #71777c;
 
 .#{$class-prefix}-header-wrapper {
     width: 100%;
@@ -90,10 +92,24 @@ $page-max-width: 960px;
                 justify-content: center;
                 align-items: center;
                 padding: 0 10px;
-                font-size: 14px;
+                font-size: 15px;
                 cursor: pointer;
+                 &:hover {
+                     a {
+                        color: $theme-font-color;
+                     }
+                }
+                &:first-child {
+                    padding-left: 0;
+                    font-size: 17px;
+                    font-weight: 600;
+                    width: 45px;
+                    img {
+                        width: 100%;
+                    }
+                }
                 a {
-                    color: $theme-font-color;
+                    color: $header-font-color;
                 }
             }
         }

@@ -146,29 +146,36 @@ $class-prefix: 'blog';
                 &:before {
                     left: -20px;
                     margin-top: -3px;
-                    width: 6px;
-                    height: 6px;
+                    width: 7px;
+                    height: 7px;
                 }
             }
             &.level-2 {
                 font-size: 15px;
-                margin-left: 35px;
+                margin-left: 25px;
+                font-weight: 700;
+                &:before {
+                    left: -20px;
+                    margin-top: -3px;
+                    width: 6px;
+                    height: 6px;
+                }
             }
             &.level-3 {
                 font-size: 14px;
-                margin-left: 45px;
+                margin-left: 41px;
             }
             &.level-4 {
                 font-size: 13px;
-                margin-left: 55px;
+                margin-left: 57px;
             }
             &.level-5 {
                 font-size: 12px;
-                margin-left: 65px;
+                margin-left: 72px;
             }
             &.level-6 {
                 font-size: 12px;
-                margin-left: 75px;
+                margin-left: 86px;
             }
         }
     }

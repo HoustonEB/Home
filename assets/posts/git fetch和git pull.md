@@ -1,9 +1,9 @@
 ---
+authorName: Yu
 title: git fetch 和 git pull
 date: 2019-09-17 19:26:37
 categories: Git
-tags:
-- Git
+tags: Git
 ---
 ### 区别
 `git fetch`和`git pull`都是同步远端的代码,区别是前者将远端的更新全部更新到本地git远端文件夹(remotes)内,不会自动merge.

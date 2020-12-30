@@ -1,6 +1,8 @@
 ---
+authorName: Yu
 title: hexo
 date: 2019-08-13 15:41:22
+categories: hexo
 tags: hexo
 ---
 ## 命令

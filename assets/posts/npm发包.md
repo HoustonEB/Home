@@ -1,10 +1,9 @@
 ---
+authorName: Yu
 title: npm发包
 date: 2019-08-21 14:00:36
 categories: npm
-tags: 
-- npm
-- npm发包
+tags: npm npm发包
 ---
 ## 添加Change Log
 1. **安装commitizen**

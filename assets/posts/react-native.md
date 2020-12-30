@@ -1,9 +1,9 @@
 ---
+authorName: Yu
 title: react-native
 date: 2019-10-22 16:13:42
 categories: react-native
-tags: 
-- react-native
+tags: react-native
 ---
 
 ## 发版app

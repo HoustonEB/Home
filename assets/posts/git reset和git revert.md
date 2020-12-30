@@ -1,9 +1,9 @@
 ---
+authorName: Yu
 title: git reset和git revert
 date: 2019-09-17 20:04:58
 categories: Git
-tags:
-- Git
+tags: Git
 ---
 1. get reset
 回退到指定版本,提交历史中看不到指定版本后的提交历史.

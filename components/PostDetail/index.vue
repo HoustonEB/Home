@@ -1,9 +1,29 @@
 <template>
     <div class="md-comp-wrapper">
-        <div
-            class="md-comp-content markdown-body-style"
-            v-html="mdContent"
-        ></div>
+        <div class="md-comp-content">
+            <div class="md-title-wrapper">
+                <p class="title">
+                    <span>{{ titleInfo.title }}</span>
+                </p>
+                <p class="desc">
+                    <span>发表于: {{ titleInfo.date }}</span>
+                    <span>分类:</span>
+                    <span
+                        class="categories-item"
+                        v-for="(item, index) in titleInfo.categories"
+                        >{{(index !== 0 ? '&nbsp;' : '') + item }}</span
+                    >
+                    <span>标签:</span>
+                    <span 
+                    class="tags-item" 
+                    v-for="(item, index) in titleInfo.tags"
+                    >{{ (index !== 0 ? '&nbsp;' : '') + item }}</span>
+                </p>
+            </div>
+            <viewer :trigger="mdContent">
+                <div class="markdown-body-style" v-html="mdContent"></div>
+            </viewer>
+        </div>
         <div class="anchor-list-box">
             <Anchor :catalogData="catalogData" />
         </div>
@@ -29,10 +49,24 @@ export default {
         const {
             params: { id },
         } = this.$route
-        // console.log(this.$route, 'route', id)
+        let mdContent = require(`~/assets/posts/${id}.md`)
+        let titleInfo = {}
+        mdContent = mdContent.replace(/^<hr>(.*?)<hr>/gis, function (
+            match,
+            p1
+        ) {
+            p1.replace(/(\w*): (.*?)</gis, function (mah, i1, i2) {
+                titleInfo[i1] = i2
+                if (['categories', 'tags'].includes(i1)) {
+                    titleInfo[i1] = i2.split(' ')
+                }
+            })
+            return ''
+        }) // 修饰符s使.可以匹配\n换行符
         return {
             postId: id,
-            mdContent: require(`~/assets/posts/${id}.md`),
+            mdContent,
+            titleInfo,
             catalogData: [],
         }
     },
@@ -73,7 +107,40 @@ export default {
         flex: 1;
         padding: 24px 35px 24px;
         background-color: #fff;
-        overflow: auto;
+        overflow-x: auto;
+        overflow: hidden;
+        .md-title-wrapper {
+            .title {
+                font-size: 26px;
+                text-align: center;
+                word-break: break-word;
+                font-weight: 400;
+            }
+            .desc {
+                margin-top: 5px;
+                font-family: 'Lato', 'PingFang SC', 'Microsoft YaHei',
+                    sans-serif;
+                font-size: 12px;
+                text-align: center;
+                color: #999;
+                .categories-item {
+                    &:nth-child(odd) {
+                        color: $categories-color1;
+                    }
+                    &:nth-child(even) {
+                        color: $categories-color2;
+                    }
+                }
+                .tags-item {
+                    &:nth-child(odd) {
+                        color: $tags-color1;
+                    }
+                    &:nth-child(even) {
+                        color: $tags-color2;
+                    }
+                }
+            }
+        }
         &/deep/ .post-anchor {
             position: absolute;
             &:hover {

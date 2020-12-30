@@ -3,15 +3,34 @@
         <div class="post-l-box">
             <ul>
                 <li v-for="item in postsData">
-                    <nuxt-link no-prefetch :to="{path: '/Posts/' + item.title}">
+                    <nuxt-link
+                        no-prefetch
+                        :to="{ path: '/Posts/' + item.id }"
+                    >
                         <div>
                             <p class="post-content-info">
                                 <a href="#">{{ item.authorName }}</a>
+                                <i>.</i>
                                 <span>{{ item.date }}</span>
-                                <a href="#">{{ item.category }}</a>
+                                <i>.</i>
+                                <span>分类:</span>
+                                <a
+                                    href="#"
+                                    class="categories-item"
+                                    v-for="(itm, idx) in item.categories"
+                                    >{{ (idx !== 0 ? '&nbsp;' : '') + itm }}</a
+                                >
+                                <i>.</i>
+                                <span>标签:</span>
+                                <a
+                                    href="#"
+                                    class="tags-item"
+                                    v-for="(itm, idx) in item.tags"
+                                    >{{ (idx !== 0 ? '&nbsp;' : '') + itm }}</a
+                                >
                             </p>
                             <p class="posts-title ellipsis">
-                                {{ item.title }}
+                                {{ item.id }}
                             </p>
                             <p class="posts-operate"></p>
                         </div>
@@ -89,25 +108,39 @@ $class-prefix: 'home';
                         color: $theme-font-color;
                     }
                 }
-                a:nth-child(1):after,
-                span:after {
-                    content: '·';
-                    margin: 5px;
-                    color: #b2bac2;
+                i {
+                    position: relative;
+                    top: -3px;
+                }
+                .categories-item {
+                    &:nth-child(odd) {
+                        color: $categories-color1;
+                    }
+                    &:nth-child(even) {
+                        color: $categories-color2;
+                    }
+                }
+                .tags-item {
+                    &:nth-child(odd) {
+                        color: $tags-color1;
+                    }
+                    &:nth-child(even) {
+                        color: $tags-color2;
+                    }
                 }
             }
-            .posts-title {
-                margin: 6px 0 12px 0;
-                font-size: 16px;
-                font-weight: 600;
-                line-height: 1.2;
+        }
+        .posts-title {
+            margin: 6px 0 12px 0;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1.2;
+            color: #2e3135;
+            a {
                 color: #2e3135;
-                a {
+                &:hover {
                     color: #2e3135;
-                    &:hover {
-                        color: #2e3135;
-                        text-decoration: underline;
-                    }
+                    text-decoration: underline;
                 }
             }
         }

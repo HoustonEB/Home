@@ -27,7 +27,8 @@
     "core-js": "^3.6.5",
     "dompurify": "^2.0.17",
     "jsdom": "^16.4.0",
-    "nuxt": "^2.14.5"
+    "nuxt": "^2.14.5",
+    "v-viewer": "^1.5.1"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^3.1.0",

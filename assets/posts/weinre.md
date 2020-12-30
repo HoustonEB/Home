@@ -1,10 +1,9 @@
 ---
+authorName: Yu
 title: weinre
 date: 2019-09-29 11:29:24
 categories: 移动端调试工具
-tags:
-- weinre
-- 移动端调试工具
+tags: weinre 移动端调试工具
 ---
 ## weinre是什么
 weinre(Web Inspector Remote).是一种远程调试的工具,在电脑上可以调试手机远端的页面,包括样式,查看js变量和页面上的报警信息.
