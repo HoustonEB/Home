@@ -1,4 +1,4 @@
-const {renderer} = require('./components/utils/renderer');
+const {renderer, tokenizer} = require('./components/utils/markedParser');
 
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
@@ -75,6 +75,7 @@ export default {
                 smartLists: true,
                 smartypants: true,
                 xhtml: false,
+                // tokenizer,
                 // walkTokens: (token) => {
                 //   if (token.type === 'heading') {
                 //     token.depth += 1;

@@ -11,8 +11,8 @@ let fileNames = ctx.keys().map((item) => {
 let postsData = fileNames.map((item) => {
     let mdContent = require(`~/assets/posts/${item}.md`)
     let data = { id: item }
-    mdContent.replace(/^<hr>(.*?)<hr>/gis, function (match, p1) {
-        p1.replace(/(\w*): (.*?)</gis, function (mah, i1, i2) {
+    mdContent.replace(/^<hr(.*?)hr>/gis, function (match, p1) {
+        p1.replace(/>(\w*): (.*?)</gis, function (mah, i1, i2) {
             data[i1] = i2;
             if (['categories', 'tags'].includes(i1)) {
                 data[i1] = i2.split(' ')

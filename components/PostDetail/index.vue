@@ -51,24 +51,21 @@ export default {
         } = this.$route
         let mdContent = require(`~/assets/posts/${id}.md`)
         let titleInfo = {}
-        mdContent = mdContent.replace(/^<hr>(.*?)<hr>/gis, function (
-            match,
-            p1
-        ) {
-            p1.replace(/(\w*): (.*?)</gis, function (mah, i1, i2) {
+        mdContent = mdContent.replace(/^<hr(.*?)hr>/gis, function (match, p1) {
+            p1.replace(/>(\w*): (.*?)</gis, function (mah, i1, i2) {
                 titleInfo[i1] = i2
                 if (['categories', 'tags'].includes(i1)) {
                     titleInfo[i1] = i2.split(' ')
                 }
             })
-            return ''
-        }) // 修饰符s使.可以匹配\n换行符
+            return '';
+        }); // 修饰符s使.可以匹配\n换行符
         return {
             postId: id,
             mdContent,
             titleInfo,
-            catalogData: [],
-        }
+            catalogData: []
+        };
     },
     methods: {
         getAnchorData: function () {
@@ -111,13 +108,14 @@ export default {
         overflow: hidden;
         .md-title-wrapper {
             .title {
-                font-size: 26px;
+                font-size: 30px;
                 text-align: center;
                 word-break: break-word;
-                font-weight: 400;
+                font-weight: 500;
             }
             .desc {
                 margin-top: 5px;
+                margin-bottom: 10px;
                 font-family: 'Lato', 'PingFang SC', 'Microsoft YaHei',
                     sans-serif;
                 font-size: 12px;

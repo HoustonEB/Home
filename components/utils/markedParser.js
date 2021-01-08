@@ -1,5 +1,6 @@
 const marked = require('marked');
 const renderer = new marked.Renderer();
+const tokenizer = new marked.Tokenizer();
 
 
 const heading = function (text, level, raw, slugger) {
@@ -17,16 +18,30 @@ const image = function (href, title, text) {
   return `<p v-viewer><img id="POST_IMG" src="${href}" alt="${text}" title="${title}" style="cursor: zoom-in"></p>`;
 }
 
-const link = function(href, title, text) {
+const link = function (href, title, text) {
   return `<a href="${href}" target="_blank" title="${text}">${text}</a>`
+}
+
+const paragraph = function (text = '') {
+  let re = /\{% (\w*?) (\w*?) %\}(<br>)?(.*?)(<br>)?\{%(.*?)%\}/gis;
+  if (re.test(text)) {
+    let newStr = text.replace(re, function (match, p1, p2, p3, p4, p5, p6) {
+      // console.log(match, '\n', p1, '\n', p2, '\n', p3, '\n', p4, '---')
+      return `<div class="post_${p1} post_${p2}">${p4}</div>`;
+    });
+    return newStr;
+  }
+  return text;
 }
 
 Object.assign(renderer, {
   heading,
   image,
-  link
+  link,
+  paragraph
 });
 
 export {
   renderer,
+  tokenizer
 }

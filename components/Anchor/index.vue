@@ -2,12 +2,13 @@
     <div :class="[classPrefix + '-anchor-wrapper']">
         <p class="catalog-title">目录</p>
         <ul>
-            <li v-for="{ id, title, level } in catalogData">
+            <li 
+            v-for="{ id, title, level } in catalogData"
+            :class="activeLinkId === '#' + id ? 'active' : ''">
                 <a
                     :class="[
                         'catalog-link',
-                        'level-' + level,
-                        activeLinkId === '#' + id ? 'active' : '',
+                        'level-' + level
                     ]"
                     :href="['#' + id]"
                     @click.prevent="linkClick(id, $event)"
@@ -19,6 +20,7 @@
     </div>
 </template>
 <script>
+import throttle from 'loadsh/throttle';
 export default {
     props: {
         classPrefix: {
@@ -48,14 +50,12 @@ export default {
             let scrollHeadDom = document.getElementById(id)
             let top = scrollHeadDom.getBoundingClientRect().top
 
-            window.scrollBy(0, top - 120)
+            window.scrollBy({top: top - 120, left: 0, behavior: 'smooth'})
         },
-        scroll: function () {
+        scroll: throttle(function () {
             this.isExitDomIds = this.anchorDoms
                 .map((item) => {
-                    let clientHeight =
-                        document.documentElement.clientHeight ||
-                        document.body.clientHeight // 视口的高度
+                    let clientHeight = document.documentElement.clientHeight || document.body.clientHeight // 视口的高度
                     let top = item.getBoundingClientRect().top // 与视口顶部的距离
                     let bottom = item.getBoundingClientRect().bottom
 
@@ -65,7 +65,7 @@ export default {
                 })
                 .filter(Boolean)
             // console.log(this.isExitDomIds)
-        },
+        }, 50),
         getAnchorDom: function () {
             let domArr = this.catalogData.map((item) => {
                 return document.getElementById(`${item.id}`)
@@ -110,7 +110,7 @@ $class-prefix: 'blog';
             left: 7px;
             bottom: 0;
             width: 2px;
-            background-color: #ebedef;
+            // background-color: #ebedef;
             opacity: 0.5;
         }
     }
@@ -118,13 +118,18 @@ $class-prefix: 'blog';
         font-size: 14px;
         font-weight: 400;
         line-height: 24px;
-
+        padding-right: 5px;
+        cursor: pointer;
+        &.active, &:hover {
+            background-color: #ebedef;
+        }
+        &.active a{
+                color: $theme-font-color;
+        }
         a {
+            display: block;
             color: #333;
             position: relative;
-            &.active {
-                color: $theme-font-color;
-            }
             &:before {
                 content: '';
                 position: absolute;
@@ -136,15 +141,15 @@ $class-prefix: 'blog';
                 background-color: currentColor;
                 border-radius: 50%;
             }
-            &:hover {
-                color: $theme-font-color;
-            }
+            // &:hover {
+            //     color: $theme-font-color;
+            // }
             &.level-1 {
                 font-weight: 900;
                 font-size: 16px;
-                margin-left: 25px;
+                padding-left: 25px;
                 &:before {
-                    left: -20px;
+                    left: 5px;
                     margin-top: -3px;
                     width: 7px;
                     height: 7px;
@@ -152,10 +157,10 @@ $class-prefix: 'blog';
             }
             &.level-2 {
                 font-size: 15px;
-                margin-left: 25px;
+                padding-left: 25px;
                 font-weight: 700;
                 &:before {
-                    left: -20px;
+                    left: 5px;
                     margin-top: -3px;
                     width: 6px;
                     height: 6px;
@@ -163,19 +168,31 @@ $class-prefix: 'blog';
             }
             &.level-3 {
                 font-size: 14px;
-                margin-left: 41px;
+                padding-left: 41px;
+                &:before {
+                    left: 30px;
+                }
             }
             &.level-4 {
                 font-size: 13px;
-                margin-left: 57px;
+                padding-left: 57px;
+                 &:before {
+                    left: 46px;
+                }
             }
             &.level-5 {
                 font-size: 12px;
-                margin-left: 72px;
+                padding-left: 72px;
+                 &:before {
+                    left: 61px;
+                }
             }
             &.level-6 {
                 font-size: 12px;
-                margin-left: 86px;
+                padding-left: 86px;
+                 &:before {
+                    left: 75px;
+                }
             }
         }
     }
