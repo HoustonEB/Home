@@ -116,27 +116,26 @@ export default {
             .desc {
                 margin-top: 5px;
                 margin-bottom: 10px;
-                font-family: 'Lato', 'PingFang SC', 'Microsoft YaHei',
-                    sans-serif;
+                font-family: 'Lato', 'PingFang SC', 'Microsoft YaHei', sans-serif;
                 font-size: 12px;
                 text-align: center;
                 color: #999;
-                .categories-item {
-                    &:nth-child(odd) {
-                        color: $categories-color1;
-                    }
-                    &:nth-child(even) {
-                        color: $categories-color2;
-                    }
-                }
-                .tags-item {
-                    &:nth-child(odd) {
-                        color: $tags-color1;
-                    }
-                    &:nth-child(even) {
-                        color: $tags-color2;
-                    }
-                }
+                // .categories-item {
+                //     &:nth-child(odd) {
+                //         color: $categories-color1;
+                //     }
+                //     &:nth-child(even) {
+                //         color: $categories-color2;
+                //     }
+                // }
+                // .tags-item {
+                //     &:nth-child(odd) {
+                //         color: $tags-color1;
+                //     }
+                //     &:nth-child(even) {
+                //         color: $tags-color2;
+                //     }
+                // }
             }
         }
         &/deep/ .post-anchor {

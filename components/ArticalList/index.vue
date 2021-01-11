@@ -10,7 +10,6 @@
                         <div>
                             <p class="post-content-info">
                                 <a href="#">{{ item.authorName }}</a>
-                                <i>.</i>
                                 <span>{{ item.date }}</span>
                                 <i>.</i>
                                 <span>分类:</span>
@@ -112,22 +111,22 @@ $class-prefix: 'octopus';
                     position: relative;
                     top: -3px;
                 }
-                .categories-item {
-                    &:nth-child(odd) {
-                        color: $categories-color1;
-                    }
-                    &:nth-child(even) {
-                        color: $categories-color2;
-                    }
-                }
-                .tags-item {
-                    &:nth-child(odd) {
-                        color: $tags-color1;
-                    }
-                    &:nth-child(even) {
-                        color: $tags-color2;
-                    }
-                }
+                // .categories-item {
+                //     &:nth-child(odd) {
+                //         color: $categories-color1;
+                //     }
+                //     &:nth-child(even) {
+                //         color: $categories-color2;
+                //     }
+                // }
+                // .tags-item {
+                //     &:nth-child(odd) {
+                //         color: $tags-color1;
+                //     }
+                //     &:nth-child(even) {
+                //         color: $tags-color2;
+                //     }
+                // }
             }
         }
         .posts-title {
