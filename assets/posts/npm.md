@@ -59,7 +59,12 @@ npm ls react -g (查看全局安装的react)
 ![npm-link](./npm/1.jpg)
 #### npm unlink
 调试结束后，我们回到开发包的目录,执行`npm unlink`,解除映射关系.
-
+#### npm whoami
+查看当前npm用户
+#### npm login
+登录npm
+#### npm config get registry
+查看当前registry
 ## 相关链接
 ---
 [一文为您构建系统化的 NPM 知识！](https://mp.weixin.qq.com/s/RAtoEgZsvpuRwudeUjNKZw)

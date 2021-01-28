@@ -5,20 +5,23 @@
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
-    "start": "nuxt start",
+    "start": "pm2 start npm -i max --name home-server -- run nuxt-start",
+    "nuxt-start": "nuxt start",
     "generate": "nuxt generate",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint": "npm run lint:js",
-    "deploy": "bash ./scripts/push.sh",
     "test": "jest",
-    "create post": "bash ./scripts/createPost.sh"
+    "create-post": "bash ./scripts/createPost.sh",
+    "deploy": "node ./scripts/deploy.js",
+    "deploy-server": "node ./scripts/deployServer.js"
   },
   "lint-staged": {
     "*.{js,vue}": "eslint"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
+  "config": {
+    "nuxt": {
+      "host": "0.0.0.0",
+      "port": "3000"
     }
   },
   "dependencies": {
@@ -53,6 +56,7 @@
     "node-sass": "^4.14.1",
     "prettier": "^2.1.1",
     "sass-loader": "^10.0.2",
+    "sftp-connection": "^1.0.5",
     "vue-jest": "^3.0.4",
     "vue-markdown-loader": "^2.4.1"
   }
