@@ -22,6 +22,11 @@ const link = function (href, title, text) {
   return `<a href="${href}" target="_blank" title="${text}">${text}</a>`
 }
 
+// const code = function (code, infostring, escaped) {
+// return <code lang="${code}">${code}</code>;
+//   // return `<a href="${href}" target="_blank" title="${text}">${text}</a>`
+// }
+
 const paragraph = function (text = '') {
   let re = /\{% (\w*?) (\w*?) %\}(<br>)?(.*?)(<br>)?\{%(.*?)%\}/gis;
   if (re.test(text)) {
@@ -38,6 +43,7 @@ Object.assign(renderer, {
   heading,
   image,
   link,
+  // code,
   paragraph
 });
 

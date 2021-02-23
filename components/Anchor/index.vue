@@ -1,7 +1,8 @@
 <template>
     <div :class="[classPrefix + '-anchor-wrapper']">
         <p class="catalog-title">目录</p>
-        <ul>
+        <div class="catalog-body">
+            <ul>
             <li 
             v-for="{ id, title, level } in catalogData"
             :class="activeLinkId === '#' + id ? 'active' : ''">
@@ -17,6 +18,7 @@
                 </a>
             </li>
         </ul>
+        </div>
     </div>
 </template>
 <script>
@@ -30,7 +32,7 @@ export default {
         catalogData: {
             type: Array,
             default: [],
-        },
+        }
     },
     computed: {
         activeLinkId: function () {
@@ -41,6 +43,7 @@ export default {
         return {
             anchorDoms: [],
             isExitDomIds: [],
+            anchorUlTop: 0
         }
     },
     methods: {
@@ -53,17 +56,35 @@ export default {
             window.scrollBy({top: top - 120, left: 0, behavior: 'smooth'})
         },
         scroll: throttle(function () {
+            let clientHeight = document.documentElement.clientHeight || document.body.clientHeight // 视口的高度
+            let catalogBodyUl = document.querySelectorAll('.catalog-body ul')[0];
+            let visibleUlHeight = clientHeight - this.anchorUlTop;
+            let catalogBody = document.querySelectorAll('.catalog-body')[0];
+            let catalogBodyHeight = catalogBody.offsetHeight;
+            let catalogLiHeight = document.querySelectorAll('.catalog-body li')[0].offsetHeight;
+            let halfActiveIdx = Math.round((visibleUlHeight / catalogLiHeight) / 2);
+            let activeIdx = 0;
             this.isExitDomIds = this.anchorDoms
-                .map((item) => {
-                    let clientHeight = document.documentElement.clientHeight || document.body.clientHeight // 视口的高度
-                    let top = item.getBoundingClientRect().top // 与视口顶部的距离
-                    let bottom = item.getBoundingClientRect().bottom
+            .map((item) => {
+                let top = item.getBoundingClientRect().top // 与视口顶部的距离
+                let bottom = item.getBoundingClientRect().bottom
 
-                    if (top <= 150) {
-                        return '#' + item.getAttribute('id')
-                    }
-                })
-                .filter(Boolean)
+                if (top <= 150) {
+                    return '#' + item.getAttribute('id')
+                }
+            })
+            .filter(Boolean)
+            this.catalogData.forEach((item, index) => {
+                if(item.id === this.activeLinkId.substr(1)) {
+                    activeIdx = index + 1;
+                }
+                });
+            if(activeIdx > halfActiveIdx) {
+                catalogBodyUl.style.marginTop = -((activeIdx - halfActiveIdx) * catalogLiHeight) + 'px';
+            } else {
+                catalogBodyUl.style.marginTop = '0px';
+            }
+            console.log(halfActiveIdx, 'halfActiveIdx', activeIdx);
             // console.log(this.isExitDomIds)
         }, 50),
         getAnchorDom: function () {
@@ -74,6 +95,8 @@ export default {
         },
     },
     mounted: function () {
+        let catalogBodyUl = document.querySelectorAll('.catalog-body ul')[0];
+        this.anchorUlTop = catalogBodyUl.getBoundingClientRect().top;
         window.document.addEventListener('scroll', this.scroll)
     },
     updated: function () {
@@ -83,7 +106,7 @@ export default {
                 e.preventDefault()
                 this.linkClick(item.id)
             }
-        })
+        });
     },
     destroyed: function () {
         window.document.removeEventListener('scroll', this.scroll)
@@ -101,7 +124,9 @@ $class-prefix: 'blog';
         font-size: 14px;
         font-weight: 600;
     }
-    ul {
+    .catalog-body {
+        overflow: hidden;
+         ul {
         position: relative;
         &:before {
             content: '';
@@ -110,7 +135,7 @@ $class-prefix: 'blog';
             left: 7px;
             bottom: 0;
             width: 2px;
-            // background-color: #ebedef;
+            background-color: #ebedef;
             opacity: 0.5;
         }
     }
@@ -195,6 +220,7 @@ $class-prefix: 'blog';
                 }
             }
         }
+    }
     }
 }
 </style>

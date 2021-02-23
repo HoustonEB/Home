@@ -30,8 +30,8 @@
     </div>
 </template>
 <script>
-import hljs from 'highlight.js'
-import anchor from 'ant-design-vue/lib/anchor'
+import hljs from 'highlight.js';
+import anchor from 'ant-design-vue/lib/anchor';
 // import 'highlight.js/styles/atom-one-dark.css'
 // import '~/assets/scss/markdown.scss';
 
@@ -80,17 +80,24 @@ export default {
         },
     },
     mounted: function () {
-        highlightCode()
+        // highlightCode();
         this.getAnchorData()
+        document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('pre code').forEach((block) => {
+            hljs.highlightBlock(block);
+        });
+        });
     },
 
     updated: function () {
-        highlightCode()
+        // highlightCode();
     },
 }
 </script>
 <style lang="scss">
-@import 'highlight.js/styles/atom-one-dark.css';
+@import 'highlight.js/styles/atom-one-light.css';
+// @import 'highlight.js/styles/atom-one-dark.css';
+// @import 'highlight.js/styles/solarized-light.css';
 @import '~/assets/scss/markdown.scss';
 </style>
 <style lang="scss" scoped>
