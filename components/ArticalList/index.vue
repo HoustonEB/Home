@@ -87,9 +87,9 @@ $class-prefix: 'octopus';
     ul {
         background-color: #fff;
         li {
-            padding: 18px 24px;
             border-top: 1px solid #eee;
             div {
+                padding: 18px 24px;
                 height: 100%;
             }
             &:last-child {

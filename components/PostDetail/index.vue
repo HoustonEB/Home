@@ -36,11 +36,9 @@ import anchor from 'ant-design-vue/lib/anchor';
 // import '~/assets/scss/markdown.scss';
 
 const highlightCode = () => {
-    const preEl = document.querySelectorAll('pre')
-
-    preEl.forEach((el) => {
-        hljs.highlightBlock(el)
-    })
+    document.querySelectorAll('pre code').forEach((block) => {
+            hljs.highlightBlock(block);
+        });
 }
 
 export default {
@@ -80,17 +78,15 @@ export default {
         },
     },
     mounted: function () {
-        // highlightCode();
+        highlightCode();
         this.getAnchorData()
-        document.addEventListener('DOMContentLoaded', (event) => {
-        document.querySelectorAll('pre code').forEach((block) => {
-            hljs.highlightBlock(block);
-        });
-        });
+        // document.addEventListener('DOMContentLoaded', (event) => {
+        
+        // });
     },
 
     updated: function () {
-        // highlightCode();
+        highlightCode();
     },
 }
 </script>
@@ -103,7 +99,6 @@ export default {
 <style lang="scss" scoped>
 // @import 'github-markdown-css';
 @import '~/assets/scss/variable.scss';
-
 .md-comp-wrapper {
     display: flex;
     color: #333;

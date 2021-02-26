@@ -6,28 +6,6 @@
     font-size: 16px;
     color: #2c3e50;
 
-    code[class*='language-'],
-    pre[class*='language-'] {
-        text-align: left;
-        white-space: pre;
-        word-spacing: normal;
-        word-break: normal;
-        word-wrap: normal;
-        line-height: 1.5;
-        -moz-tab-size: 4;
-        -o-tab-size: 4;
-        tab-size: 4;
-        -webkit-hyphens: none;
-        -ms-hyphens: none;
-        hyphens: none;
-    }
-
-    pre[class*='language-'] {
-        padding: 1em;
-        margin: 0.5em 0;
-        overflow: auto;
-    }
-
     :not(pre) > code[class*='language-'] {
         padding: 0.1em;
         border-radius: 0.3em;
@@ -289,18 +267,29 @@
         padding: 0.6em 1em;
     }
 
-    // pre {
-    //     border-left: 0.5rem solid;
-    //     border-color: #42b983;
-    //     border-radius: 0;
-    // }
+    pre {
+        // border-left: 0.5rem solid;
+        // border-color: #42b983;
+        border-radius: 2px;
+        text-align: left;
+        white-space: pre;
+        word-spacing: normal;
+        word-break: normal;
+        word-wrap: normal;
+        line-height: 1.5;
+        -moz-tab-size: 4;
+        -o-tab-size: 4;
+        tab-size: 4;
+        -webkit-hyphens: none;
+        -ms-hyphens: none;
+        hyphens: none;
+        margin: 3px 0;
+    }
 
     pre > code {
         font-size: 14px !important;
-        padding: 0;
         margin: 0;
-        border-radius: 0;
-        white-space: unset;
+        padding: 7px 10px;
     }
 
     // pre > code > p {

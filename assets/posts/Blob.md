@@ -18,7 +18,7 @@ options：可选项，字典格式类型，可以指定如下两个属性：
 <!-- more -->
 
 ```js
-var data1 = "a";
+    var data1 = "a";
     var data2 = "b";
     var data3 = "<div style='color:red;'>This is a blob</div>";
     var data4 = { "name": "abc" };

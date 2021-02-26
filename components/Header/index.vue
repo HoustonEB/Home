@@ -11,13 +11,23 @@
             </div>
             <div class="h-r">
                 <div class="header-search-box">
-                    <Input 
-                    :classPrefix="classPrefix" 
-                    placeholder="Search"
-                    style="width: 168px;"
-                    :search="onSearch"
-                    :change="onChange"
-                    :loading="loading"/>
+                    <a-select
+                        show-search
+                        :show-arrow="false"
+                        label-in-value
+                        :value="value"
+                        placeholder="Search Title"
+                        style="width: 150px"
+                        :filter-option="false"
+                        :not-found-content="fetching ? undefined : null"
+                        @search="fetchUser"
+                        @change="handleChange"
+                    >
+                        <a-spin v-if="fetching" slot="notFoundContent" size="small" />
+                        <a-select-option v-for="d in data" :key="d.value">
+                        {{ d.text }}
+                        </a-select-option>
+                    </a-select>
                 </div>
                 <div class="avatar-box">
                     <img :src="imgSrc" alt="" />
@@ -36,23 +46,35 @@ export default {
     data: function () {
         return {
             loading: false,
+            fetching: false,
+            data: [],
+            value: [],
             categoryListDuplicate: this.categoryList,
         }
     },
     methods: {
-        onSearch: function(val, e) {
-            console.log(val, e)
+        fetchUser(value) {
+            console.log('fetching user', value);
+            this.data = [];
+            this.fetching = true;
+            fetch('https://randomuser.me/api/?results=5')
+                .then(response => response.json())
+                .then(body => {
+                const data = body.results.map(user => ({
+                    text: `${user.name.first} ${user.name.last}`,
+                    value: user.login.username,
+                }));
+                this.data = data;
+                this.fetching = false;
+                });
+            },
+        handleChange(value) {
+            Object.assign(this, {
+                value,
+                data: [],
+                fetching: false,
+            });
         },
-        onChange: function(e) {
-            this.loading = true;
-            return new Promise((resolve, reject) => {
-                setTimeout(() => {
-                    this.loading = false;
-                    resolve(1)
-                }, 1000)
-            })
-            console.log('search', e.target.value)
-        }
     }
 }
 </script>

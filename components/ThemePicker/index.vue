@@ -1,10 +1,10 @@
 <template>
     <div 
     class="theme-picker-wrapper"
-    @mouseleave="setIsOpenPicker(false)">
+    @mouseleave="setIsOpenPicker(false, $event)">
         <div class="picker">
             <ul
-                @mouseenter="setIsOpenPicker(true)"
+                @click="setIsOpenPicker(true, $event)"
             >
                 <li
                     v-for="({ backgroundImage, top, left, transform }, index) in pickersData"
@@ -25,6 +25,7 @@
 export default {
     data: function () {
         return {
+            container: '',
             isOpen: false,
             colorMap: [
                 'linear-gradient(60deg, #64b3f4 0%, #c2e59c 100%)',
@@ -33,6 +34,10 @@ export default {
                 'linear-gradient(-225deg, #69EACB 0%, #EACCF8 48%, #6654F1 100%)'
             ],
         }
+    },
+    mounted: function() {
+        this.container = document.querySelectorAll('.container')[0];
+        this.container.style.backgroundImage = localStorage.getItem('HOME_THEME_BGC');
     },
     computed: {
         pickersData: function () {
@@ -58,13 +63,13 @@ export default {
         },
     },
     methods: {
-        setIsOpenPicker: function (bol) {
+        setIsOpenPicker: function (bol, e) {
+            e.stopPropagation();
             this.isOpen = bol
-            console.log(bol, 'bol')
         },
         updateThemeBGC: function (bgc) {
-            let container = document.querySelectorAll('.container')[0];
-            container.style.backgroundImage = bgc;
+            localStorage.setItem('HOME_THEME_BGC', bgc);
+            this.container.style.backgroundImage = localStorage.getItem('HOME_THEME_BGC');
         }
     },
 }
@@ -110,6 +115,7 @@ $cr: 25px;
             width: $cr;
             height: $cr;
             position: absolute;
+            z-index: -1;
             border-radius: 50%;
             transition: all 300ms ease;
         }

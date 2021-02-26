@@ -1,4 +1,4 @@
-const {renderer, tokenizer} = require('./utils/markedParser');
+const { renderer, tokenizer } = require('./utils/markedParser');
 
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
@@ -39,6 +39,14 @@ export default {
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
     extractCSS: process.env.NODE_ENV === 'production',
+    // postcss: {
+    //   plugins: {
+    //     'postcss-pxtorem': {
+    //       rootValue: 40,
+    //       propList: ['*']
+    //     }
+    //   }
+    // },
     extend(config, { isClient, loaders }) {
       // console.log(config, '0-----')
       config.module.rules.push(

@@ -8,6 +8,7 @@ const sftp = new SftpConnection({
 });
 
 sftp.upload({
-    localPath: '/Users/v_yuzhuang01/Documents/Home/(.nuxt/**/*|static/**/*|nuxt.config.js|package.json)',
+    localPathPrefix: '/Users/v_yuzhuang01/Documents/Home/',
+    localPath: '/Users/v_yuzhuang01/Documents/Home/{?(.nuxt|static|utils|plugins)/**,.npmrc,nuxt.config.js,package.json}',
     remotePath: '/usr/local/nginx/html/home-node-server/'
 });

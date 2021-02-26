@@ -4,13 +4,19 @@
     </div>
 </template>
 <script>
+const fs = require('fs');
 let ctx = require.context('~/assets/posts', true, /\.md$/)
 let fileNames = ctx.keys().map((item) => {
     return item.match(/\.\/(.*)\.md/)[1]
 })
+let postsContent = {};
 let postsData = fileNames.map((item) => {
-    let mdContent = require(`~/assets/posts/${item}.md`)
-    let data = { id: item }
+    let mdContent = require(`~/assets/posts/${item}.md`);
+    let data = { id: item };
+    postsContent[item] = {
+        title: item,
+        content: mdContent
+    };
     mdContent.replace(/^<hr(.*?)hr>/gis, function (match, p1) {
         p1.replace(/>(\w*): (.*?)</gis, function (mah, i1, i2) {
             data[i1] = i2;
@@ -19,6 +25,10 @@ let postsData = fileNames.map((item) => {
             }
         })
     }) // 修饰符s使.可以匹配\n换行符
+
+    fs.writeFile('../../posts.json', JSON.stringify(postsContent), err => {
+        if (err) throw err;
+    })
     return data
 })
 // console.log(ctx.keys(), 'ctx', fileNames)

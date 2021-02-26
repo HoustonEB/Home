@@ -6,6 +6,7 @@
             :classPrefix="classPrefix" />
         <div :class="[classPrefix + '-content-wrapper']">
             <nuxt :classPrefix="classPrefix"/>
+            <ScrollTop />
         </div>
     </div>
 </template>
@@ -48,6 +49,7 @@ $page-max-width: 960px;
     .#{$class-prefix}-content-wrapper {
         max-width: $page-max-width;
         margin: 10px auto 20px;
+        padding-bottom: 20px;
     }
 }
 </style>
