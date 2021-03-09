@@ -1,5 +1,6 @@
 const { renderer, tokenizer } = require('./utils/markedParser');
 
+
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {

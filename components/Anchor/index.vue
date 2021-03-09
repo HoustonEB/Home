@@ -5,13 +5,15 @@
             <ul>
             <li 
             v-for="{ id, title, level } in catalogData"
-            :class="activeLinkId === '#' + id ? 'active' : ''">
+            :class="[activeLinkId === '#' + id ? 'active' : '']">
                 <a
                     :class="[
                         'catalog-link',
+                        'ellipsis',
                         'level-' + level
                     ]"
                     :href="['#' + id]"
+                    :title="title"
                     @click.prevent="linkClick(id, $event)"
                 >
                     {{ title }}
@@ -84,7 +86,7 @@ export default {
             } else {
                 catalogBodyUl.style.marginTop = '0px';
             }
-            console.log(halfActiveIdx, 'halfActiveIdx', activeIdx);
+            // console.log(halfActiveIdx, 'halfActiveIdx', activeIdx);
             // console.log(this.isExitDomIds)
         }, 50),
         getAnchorDom: function () {
@@ -155,6 +157,8 @@ $class-prefix: 'blog';
             display: block;
             color: #333;
             position: relative;
+            max-width: 330px;
+            min-width: 150px;
             &:before {
                 content: '';
                 position: absolute;

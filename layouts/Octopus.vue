@@ -24,10 +24,10 @@ export default {
                     name: '首页',
                     href: '/Octopus',
                 },
-                {
-                    name: '沸点',
-                    href: '/Octopus',
-                },
+                // {
+                //     name: '沸点',
+                //     href: '/Octopus',
+                // },
             ],
             blogSrc: require('~/assets/images/cat.jpg')
         }

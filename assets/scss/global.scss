@@ -21,6 +21,22 @@ html {
     text-overflow: ellipsis;
 }
 
+.v-show {
+    visibility: visible;
+}
+
+.v-hidden {
+    visibility: hidden;
+}
+
+.d-show {
+    display: block;
+}
+
+.d-hidden {
+    display: none;
+}
+
 @media screen and (min-width: 320px)and (max-width: 750px){
     .octopus-header-wrapper .octopus-header-content-wrapper .h-l {
         padding-left: 9px;

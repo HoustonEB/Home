@@ -10,7 +10,12 @@
                 </ul>
             </div>
             <div class="h-r">
-                <div class="header-search-box">
+                <div 
+                :class="[
+                    'header-search-box',
+                    $route.fullPath.indexOf('/Octopus') >= 0 ? 'v-show' : 'v-hidden'
+                    ]"
+                >
                     <a-select
                         show-search
                         :show-arrow="false"
@@ -20,7 +25,7 @@
                         style="width: 150px"
                         :filter-option="false"
                         :not-found-content="fetching ? undefined : null"
-                        @search="fetchUser"
+                        @search="fetchPosts"
                         @change="handleChange"
                     >
                         <a-spin v-if="fetching" slot="notFoundContent" size="small" />
@@ -37,6 +42,8 @@
     </div>
 </template>
 <script>
+import {mapState, mapMutations} from 'vuex';
+
 export default {
     props: {
         imgSrc: String,
@@ -52,28 +59,30 @@ export default {
             categoryListDuplicate: this.categoryList,
         }
     },
+    computed: {
+        ...mapState(['postsDetail', 'count'])
+    },
     methods: {
-        fetchUser(value) {
-            console.log('fetching user', value);
+        ...mapMutations(['searchArticle']),
+        fetchPosts(value) {
             this.data = [];
             this.fetching = true;
-            fetch('https://randomuser.me/api/?results=5')
-                .then(response => response.json())
-                .then(body => {
-                const data = body.results.map(user => ({
-                    text: `${user.name.first} ${user.name.last}`,
-                    value: user.login.username,
-                }));
-                this.data = data;
-                this.fetching = false;
-                });
-            },
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    this.fetching = false;
+                    const data = this.postsDetail.map(({title}) => (
+                        title.toLowerCase().indexOf(value.toLowerCase()) < 0 ? undefined : {
+                    text: title,
+                    value: title,
+                    }));
+                    this.data = data.filter(Boolean);
+                    resolve(this.postsDetail);
+                }, 100)
+            })
+        },
         handleChange(value) {
-            Object.assign(this, {
-                value,
-                data: [],
-                fetching: false,
-            });
+            this.$store.commit('searchArticle', {title: value.key});
+            Object.assign(this, {value});
         },
     }
 }
@@ -149,6 +158,9 @@ $header-font-color: #71777c;
             }
             .header-search-box, .avatar-box {
                 padding: 0 15px;
+                span {
+                    color: red;
+                }
             }
         }
     }
