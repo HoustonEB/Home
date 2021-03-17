@@ -3,20 +3,20 @@
         <div class="md-comp-content">
             <div class="md-title-wrapper">
                 <p class="title">
-                    <span>{{ titleInfo.title }}</span>
+                    <span>{{ title }}</span>
                 </p>
                 <p class="desc">
-                    <span>发表于: {{ titleInfo.date }}</span>
+                    <span>发表于: {{ date }}</span>
                     <span>分类:</span>
                     <span
                         class="categories-item"
-                        v-for="(item, index) in titleInfo.categories"
+                        v-for="(item, index) in categories"
                         >{{(index !== 0 ? '&nbsp;' : '') + item }}</span
                     >
                     <span>标签:</span>
                     <span 
                     class="tags-item" 
-                    v-for="(item, index) in titleInfo.tags"
+                    v-for="(item, index) in tags"
                     >{{ (index !== 0 ? '&nbsp;' : '') + item }}</span>
                 </p>
             </div>
@@ -31,7 +31,7 @@
 </template>
 <script>
 import hljs from 'highlight.js';
-import anchor from 'ant-design-vue/lib/anchor';
+// import anchor from 'ant-design-vue/lib/anchor';
 // import 'highlight.js/styles/atom-one-dark.css'
 // import '~/assets/scss/markdown.scss';
 
@@ -46,22 +46,25 @@ export default {
     data: function () {
         const {
             params: { id },
-        } = this.$route
-        let mdContent = require(`~/assets/posts/${id}.md`)
-        let titleInfo = {}
-        mdContent = mdContent.replace(/^<hr(.*?)hr>/gis, function (match, p1) {
-            p1.replace(/>(\w*): (.*?)</gis, function (mah, i1, i2) {
-                titleInfo[i1] = i2
-                if (['categories', 'tags'].includes(i1)) {
-                    titleInfo[i1] = i2.split(' ')
-                }
-            })
-            return '';
-        }); // 修饰符s使.可以匹配\n换行符
+        } = this.$route;
+        let {postsDetail} = this.$store.state;
+        let mdContent, title, date, categories, tags;
+        postsDetail.forEach(item => {
+            if(item.id === id) {
+                mdContent = item.content;
+                title = item.title;
+                date = item.date;
+                categories = item.categories;
+                tags = item.tags;
+            }
+        })
         return {
             postId: id,
             mdContent,
-            titleInfo,
+            title,
+            date,
+            categories,
+            tags,
             catalogData: []
         };
     },

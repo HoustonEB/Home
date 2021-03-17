@@ -1,6 +1,6 @@
 <template>
     <div :class="[classPrefix + '-artical-wrapper']">
-        <div class="post-l-box">
+        <div class="posts-title-box">
             <ul>
                 <li v-for="item in postsData">
                     <nuxt-link
@@ -37,11 +37,6 @@
                 </li>
             </ul>
         </div>
-        <div class="post-r-box">
-            <ul>
-                <li>1</li>
-            </ul>
-        </div>
     </div>
 </template>
 <script>
@@ -70,20 +65,6 @@ export default {
 $class-prefix: 'octopus';
 
 .#{$class-prefix}-artical-wrapper {
-    display: flex;
-    .post-l-box {
-        flex: 1;
-    }
-    .post-r-box {
-        width: 240px;
-        padding-left: 20px;
-        ul {
-            li {
-                height: 100px;
-                background-color: #fff;
-            }
-        }
-    }
     ul {
         background-color: #fff;
         li {

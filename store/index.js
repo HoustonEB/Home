@@ -1,16 +1,15 @@
 import {generatePostsData} from '@/utils/tools';
-let {postsData, postsDetail} = generatePostsData();
+let {postsDetail} = generatePostsData();
 
 export const state = () => ({
-    postsData,
     postsDetail,
-    activePostsList: postsData
+    activePostsList: postsDetail
 });
 
 export const mutations = {
     searchArticle(state, {title}) {
-        state.activePostsList = state.activePostsList.filter(item => {
-            return item.id === title;
+        state.activePostsList = state.postsDetail.filter(item => {
+            return item.title === title;
         });
     }
 }

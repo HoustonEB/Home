@@ -55,8 +55,9 @@ export default {
     bottom: 24px;
     text-align: center;
     line-height: 35px;
+    box-shadow: 0 0 5px #ddd;
     &:hover {
-        box-shadow: 0 0 5px #ddd;
+        box-shadow: 0 0 10px #ddd;
         cursor: pointer;
     }
     &:before {

@@ -1,10 +1,27 @@
-module.exports = {
-  useTabs: false, // Indent lines with tabs instead of spaces.
-  printWidth: 110, // Specify the length of line that the printer will wrap on.
-  tabWidth: 4, // Specify the number of spaces per indentation-level.
-  singleQuote: true, // Use single quotes instead of double quotes.
-  trailingComma: 'none',
-  semi: true,
-  bracketSpacing: false,
-  jsxBracketSameLine: false
-};
+{
+  "printWidth": 200,
+    "overrides": [
+        {
+            "files": ".prettierrc",
+            "options": { "parser": "json" }
+        }
+    ],
+  "tabWidth": 4, 
+  "useTabs": false, 
+  "semi": true, 
+  "singleQuote": true, 
+  "proseWrap": "preserve", 
+  "arrowParens": "avoid", 
+  "bracketSpacing": true, 
+  "disableLanguages": ["vue"], 
+  "endOfLine": "auto", 
+  "eslintIntegration": false, 
+  "htmlWhitespaceSensitivity": "ignore",
+  "ignorePath": ".prettierignore", 
+  "jsxBracketSameLine": false, 
+  "jsxSingleQuote": false, 
+  "requireConfig": false,
+  "stylelintIntegration": false,
+  "trailingComma": "es5",
+  "prettier.tslintIntegration": false
+}

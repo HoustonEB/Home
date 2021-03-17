@@ -1,22 +1,21 @@
 <template>
     <div :class="[classPrefix + '-layout-wrapper']">
-        <Header 
-            :imgSrc="blogSrc" 
-            :categoryList="categoryList"
-            :classPrefix="classPrefix" />
+        <Header :imgSrc="blogSrc" :categoryList="categoryList" :classPrefix="classPrefix" />
         <div :class="[classPrefix + '-content-wrapper']">
-            <nuxt :classPrefix="classPrefix"/>
+            <nuxt :classPrefix="classPrefix" />
             <ScrollTop />
         </div>
     </div>
 </template>
 <script>
-import 'viewerjs/dist/viewer.css'
-import Viewer from 'v-viewer'
-import Vue from 'vue'
-Vue.use(Viewer)
+import 'viewerjs/dist/viewer.css';
+import Viewer from 'v-viewer';
+import Vue from 'vue';
+Vue.use(Viewer);
 export default {
     data: () => {
+        let obj = { a: 1 };
+        let u = [1, 2];
         return {
             classPrefix: 'octopus',
             categoryList: [
@@ -29,10 +28,10 @@ export default {
                 //     href: '/Octopus',
                 // },
             ],
-            blogSrc: require('~/assets/images/cat.jpg')
-        }
+            blogSrc: require('~/assets/images/cat.jpg'),
+        };
     },
-}
+};
 </script>
 <style lang="scss">
 @import '~/assets/scss/global.scss';

@@ -3,17 +3,19 @@
         <div :class="[classPrefix + '-header-content-wrapper']">
             <div class="h-l">
                 <ul>
-                    <li><a href="/"><img src="~/assets/images/logo.svg" alt=""></a></li>
+                    <li>
+                        <a href="/"><img src="~/assets/images/logo.svg" alt="" /></a>
+                    </li>
                     <li v-for="item in categoryListDuplicate">
                         <a :href="item.href">{{ item.name }}</a>
                     </li>
                 </ul>
             </div>
             <div class="h-r">
-                <div 
-                :class="[
-                    'header-search-box',
-                    $route.fullPath.indexOf('/Octopus') >= 0 ? 'v-show' : 'v-hidden'
+                <div
+                    :class="[
+                        'header-search-box',
+                        $route.fullPath.indexOf('/Octopus') >= 0 ? 'v-show' : 'v-hidden',
                     ]"
                 >
                     <a-select
@@ -30,19 +32,38 @@
                     >
                         <a-spin v-if="fetching" slot="notFoundContent" size="small" />
                         <a-select-option v-for="d in data" :key="d.value">
-                        {{ d.text }}
+                            {{ d.text }}
                         </a-select-option>
                     </a-select>
                 </div>
                 <div class="avatar-box">
-                    <img :src="imgSrc" alt="" />
+                    <a-popover placement="bottomRight">
+                        <template slot="content">
+                            <div>12</div>
+                        </template>
+                        <template slot="title">
+                            <span>Title</span>
+                        </template>
+                        <img :src="imgSrc" alt="" />
+                    </a-popover>
+                </div>
+                <div class="audio-box">
+                    <img 
+                    v-if="!playing" 
+                    src="~/assets/images/play.svg"
+                    @click="play"/>
+                    <img 
+                    v-if="playing" 
+                    src="~/assets/images/pause.svg"
+                    @click="pause"/>
+                    <audio id="header-music" :src="require('@/assets/sources/等你下课(with 杨瑞代)-周杰伦.mp3')" />
                 </div>
             </div>
         </div>
     </div>
 </template>
 <script>
-import {mapState, mapMutations} from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 
 export default {
     props: {
@@ -56,11 +77,12 @@ export default {
             fetching: false,
             data: [],
             value: [],
+            playing: false,
             categoryListDuplicate: this.categoryList,
-        }
+        };
     },
     computed: {
-        ...mapState(['postsDetail', 'count'])
+        ...mapState(['postsDetail']),
     },
     methods: {
         ...mapMutations(['searchArticle']),
@@ -70,22 +92,37 @@ export default {
             return new Promise((resolve, reject) => {
                 setTimeout(() => {
                     this.fetching = false;
-                    const data = this.postsDetail.map(({title}) => (
-                        title.toLowerCase().indexOf(value.toLowerCase()) < 0 ? undefined : {
-                    text: title,
-                    value: title,
-                    }));
+                    const data = this.postsDetail.map(({ title }) =>
+                        title.toLowerCase().indexOf(value.toLowerCase()) < 0
+                            ? undefined
+                            : {
+                                  text: title,
+                                  value: title,
+                              }
+                    );
                     this.data = data.filter(Boolean);
                     resolve(this.postsDetail);
-                }, 100)
-            })
+                }, 100);
+            });
         },
         handleChange(value) {
-            this.$store.commit('searchArticle', {title: value.key});
-            Object.assign(this, {value});
+            console.log(value, 'value')
+            this.$store.commit('searchArticle', { title: value.key });
+            Object.assign(this, { value });
         },
+        play() {
+            this.audioEle.play();
+            this.playing = true;
+        },
+        pause() {
+            this.audioEle.pause();
+            this.playing = false;
+        }
+    },
+    mounted: function() {
+        this.audioEle = document.getElementById('header-music');
     }
-}
+};
 </script>
 <style lang="scss" scoped>
 @import '~/assets/scss/variable.scss';
@@ -104,7 +141,7 @@ $header-font-color: #71777c;
     top: 0;
     left: 0;
     z-index: 250;
-    transition: all .5;
+    transition: all 0.5;
     border-bottom: 1px solid #eee;
     .#{$class-prefix}-header-content-wrapper {
         position: relative;
@@ -125,10 +162,10 @@ $header-font-color: #71777c;
                 padding: 0 10px;
                 font-size: 15px;
                 cursor: pointer;
-                 &:hover {
-                     a {
+                &:hover {
+                    a {
                         color: $theme-font-color;
-                     }
+                    }
                 }
                 &:first-child {
                     padding-left: 0;
@@ -156,11 +193,22 @@ $header-font-color: #71777c;
                 border-radius: 50%;
                 overflow: hidden;
             }
-            .header-search-box, .avatar-box {
+            .header-search-box,
+            .avatar-box {
                 padding: 0 15px;
                 span {
                     color: red;
                 }
+            }
+            .audio-box {
+                position: relative;
+                right: -80px;
+                img {
+                    width: 25px;
+                    height: 25px;
+                    cursor: pointer;
+                }
+                audio {}
             }
         }
     }

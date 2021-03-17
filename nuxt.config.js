@@ -1,6 +1,5 @@
 const { renderer, tokenizer } = require('./utils/markedParser');
 
-
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
@@ -68,6 +67,16 @@ export default {
         //   ]
         //   // loaders: ['vue-loader', 'vue-markdown-loader/lib/markdown-compiler.js']
         // },
+        {
+          test: /\.mp3$/,
+          use: [{
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]",
+              // outputPath: "img/"
+            }
+          }]
+        },
         {
           test: /\.md$/,
           use: [
