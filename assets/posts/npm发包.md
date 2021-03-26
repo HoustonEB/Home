@@ -122,11 +122,104 @@ npm仓库源地址**http://registry.npmjs.org**
  - 提交package.json和changelog.md的改动
  - push github
 
- ## 相关链接
+## expose the library
+---
+webpack中指定包暴露的变量,这样就能支持通过`script`标签使用包.webpack会将变量注入到window中.
+```js
+const path = require('path');
+
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'webpack-numbers.js',
+    library: "webpackNumbers",
+  },
+};
+```
+然而它只能通过被`script`标签引用而发挥作用,它不能运行在`CommonJS、AMD、Node.js`等环境中.
+```html
+<script src="https://example.org/webpack-numbers.js"></script>
+<script>
+  window.webpackNumbers.wordToNum('Five');
+</script>
+```
+在webpack中添加`type: 'umd'`,即可运行在`CommonJS、AMD、Node.js`等环境中.
+```js
+const path = require('path');
+
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'webpack-numbers.js',
+  library: 'webpackNumbers',
+  library: {
+    name: 'webpackNumbers',
+    type: 'umd'
+  },
+  },
+};
+```
+
+## peerDependencies
+---
+为了避免项目和包中依赖项的重复下载,需要使用`peerDependencies`.
+未使用`peerDependencies`.
+```text
+.
+├── helloWorld
+│   └── node_modules
+│       ├── packageA
+│       ├── plugin1
+│       │   └── nodule_modules
+│       │       └── packageA
+│       └── plugin2
+│       │   └── nodule_modules
+│       │       └── packageA
+```
+添加`peerDependencies`后,项目和包的依赖图是扁平的.重复的包只会下载一次.
+```js
+{
+  "peerDependencies": {
+    "packageA": "1.0.1"
+  }
+}
+```
+此时在主系统中执行`npm install`生成的依赖图就是这样的:
+```text
+.
+├── helloWorld
+│   └── node_modules
+│       ├── packageA
+│       ├── plugin1
+│       └── plugin2
+```
+例如: 包中依赖react和react-dom的指定版本.
+```js
+{
+  "peerDependencies": {
+    "react": ">=16.12.0",
+    "react-dom": ">=16.12.0"
+  }
+}
+```
+
+{% note info %}
+因此我们总结下在插件使用 dependencies 声明依赖库的特点：
+1.如果用户显式依赖了核心库，则可以忽略各插件的 peerDependency 声明；
+2.如果用户没有显式依赖核心库，则按照插件 peerDependencies 中声明的版本将库安装到项目根目录中；
+3.当用户依赖的版本、各插件依赖的版本之间不相互兼容，会报错让用户自行修复；
+{% endnote %}
+
+
+## 相关链接
  ---
  [commitizen](https://github.com/commitizen/cz-cli)
  [git-cz](https://github.com/streamich/git-cz)
  [commit类型和emoji对映表](https://gist.github.com/parmentf/035de27d6ed1dce0b36a)
  [conventional-changelog-cli](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-cli#readme)
  [添加包的标签](https://shields.io/category/downloads)
+ [一文搞懂peerDependencies](https://juejin.cn/post/6844904134248759309)
+ [webpack 创建一个library](https://webpack.docschina.org/guides/author-libraries/#externalize-lodash)
 
