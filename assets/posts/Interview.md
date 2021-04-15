@@ -1,9 +1,9 @@
 ---
 authorName:  Yu
-title:  面试题汇总
-date:  2021-02-19 11: 25: 01
-categories:  面试题汇总
-tags:  面试题汇总
+title:  Interview
+date:  2021-02-19 11:25:01
+categories:  Interview
+tags:  Interview
 ---
 
 ## 数组扁平化
@@ -455,7 +455,11 @@ let jsonp = (url, params, callbackName) => {
 六种基本数据类型: 
 `undefined null string boolean number symbol(ES6) BigInt(ES10)`
 一种引用类型: 
-`Object`
+`Object 对象子类型（Array，Function）`
+
+## symbol 有什么用处
+---
+可以用来表示一个独一无二的变量防止命名冲突.
 
 ## 什么闭包,闭包有什么用
 ---
@@ -1064,6 +1068,231 @@ console.log(sayHi.bind(person, 5));
 [一次弄懂Event Loop](https://juejin.cn/post/6844903764202094606)
 [JavaScript 运行机制详解：再谈Event Loop](http://www.ruanyifeng.com/blog/2014/10/event-loop.html)
 
+## ajax实现原理及方法使用
+---
+
+```js
+function upload(url, {
+    file,
+    params = {},
+    fileName = 'fileName',
+    method = 'POST',
+    responseType = '',
+    credentials = false,
+    withCredentials = false,
+    headers,
+    onProgress
+} = {}) {
+    return new Promise((resolve, reject) => {
+        let formData = new FormData();
+        let request = new XMLHttpRequest();
+        formData.append(fileName, file);
+        for(let key in params) {
+            formData.append(key, params[key]);
+        }
+        
+        request.open(method, url, true);
+        request.withCredentials = withCredentials || credentials === 'include';
+        request.responseType = responseType;
+        applyRequestHeaders(request, headers);
+        request.setRequestHeader('Accept', 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9');
+        
+        request.addEventListener('load', e => {
+            if(request.status !== 200) {
+                reject({request, file, e});
+                return;
+            }
+            try {
+                let response = JSON.parse(request.responseText);
+                resolve({request, response, file, e});
+            }
+            catch (ex) {
+                reject({request, file, e});
+            }
+        });
+        request.upload.addEventListener('progress', e => {
+            console.log(e, 'progress');
+            if (onProgress) {
+                onProgress(e);
+            }
+        });
+        request.addEventListener('error', e => {
+            reject({request, file, e});
+        });
+        request.addEventListener('abort', e => {
+            reject({request, file, e});
+        });
+        request.send(formData);
+    });
+};
+```
+
+## vue双向绑定的原理是什么
+---
+
+```js
+<input type="text" id="input">
+<div id="content"></div>
+<script>
+    function obersver(data){
+        for(let i in data){
+            defineData(data,i,data[i]);
+        }
+    }
+    function defineData(data,key,value){
+        Object.defineProperty(data,key,{
+            get:function(){
+                return value;
+            },
+            set: function(newValue){
+                console.log('调用了set====');
+                value = newValue;
+                document.getElementById('content').innerHTML = newValue;
+            }
+        })
+    }
+    let obj = {};
+    document.addEventListener('keyup',function(e){
+        obersver(obj);
+        obj.text = e.target.value;
+        console.log(obj.text);
+    })
+</script>
+```
+
+## 普通函数和箭头函数的区别
+---
+
+1. 箭头函数没有`prototype`(原型)，所以箭头函数本身没有`this`
+2. 箭头函数的`this`在定义的时候继承自外层第一个普通函数的`this`。
+3. 如果箭头函数外层没有普通函数，严格模式和非严格模式下它的`this`都会指向`window`(全局对象).
+4. 箭头函数本身的`this`指向不能改变，但可以修改它要继承的对象的`this`。
+5. 箭头函数的`this`指向全局，使用`arguments`会报未声明的错误。
+6. 箭头函数的`this`指向普通函数时,它的`argumens`继承于该普通函数.
+7. 使用`new`调用箭头函数会报错，因为箭头函数没有`constructor`.
+8. 箭头函数不支持`new.target`.
+9. 箭头函数不支持重命名函数参数,普通函数的函数参数支持重命名.
+10. 箭头函数相对于普通函数语法更简洁优雅.
+
+## css的两种盒模型
+---
+
+> 在标准的盒子模型中，width指content部分的宽度
+
+![1](./Interview/1.jpeg)
+
+> 在IE盒子模型中，width表示content+padding+border这三个部分的宽度
+
+![2](./Interview/2.jpeg)
+
+### box-sizing的使用
+`box-sizing`的默认属性是`content-box`
+如果想要切换盒模型也很简单，这里需要借助css3的`box-sizing`属性
+> box-sizing: content-box 是W3C盒子模型
+> box-sizing: border-box 是IE盒子模型
+
+## em和rem的区别
+---
+
+`rem`相对于`html`元素的`font-size`大小计算.
+`em`相对于继承于父级的`font-size`的大小,如果父级和本身都有设置`font-size`则根据自身的`font-size`大小计算.
+对于em和rem的区别一句话概括：em相对于父元素，rem相对于根元素。
+[rem适配-flexible](http://caibaojian.com/flexible-js.html)
+
+## debounce & throttle
+---
+
+```js
+function debounce(fn, delay) {
+    let timer;
+    return function() {
+        let context = this;
+        let args = arguments;
+        timer && clearTimeout(timer);
+        timer = setTimeout(function() {
+            fn.apply(context, args);
+        }, delay);
+    };
+}
+-------------
+// 方法一：定时器
+function throttle (func, wait) {
+        var timeout;
+        return function() {
+            var context = this;
+            var args = arguments;
+            if(!timeout) {
+                timeout = setTimeout(function() {
+                    timeout = null;
+                    func.apply(context, args);
+                }, wait);
+            }
+        }
+    },
+// 方法二：时间戳
+const throttle2 = function(fn, delay) {
+  let preTime = Date.now();
+
+  return function() {
+      const context = this;
+      let args = arguments;
+      let doTime = Date.now();
+      if (doTime - preTime >= delay) {
+          fn.apply(context, args);
+          preTime = Date.now();
+      }
+  }
+}
+```
+
+## 函数珂里化
+---
+
+> 指的是将一个接受多个参数的函数变为接受一个参数返回一个函数的固定形式，这样便于再次调用，例如`f(1)(2)`
+经典面试题：实现`add(1)(2)(3)(4)=10;` 、 `add(1)(1,2,3)(2)=9;`
+```js
+function add() {
+  const _args = [...arguments];
+  function fn() {
+    _args.push(...arguments);
+    return fn;
+  }
+  fn.toString = function() {
+    return _args.reduce((sum, cur) => sum + cur);
+  }
+  return fn;
+}
+```
+
+## 外边距折叠(collapsing margins)
+---
+
+毗邻的两个或多个margin会合并成一个margin，叫做`外边距折叠`。规则如下：
+外边距叠加存在两种情况：一是父子外边距叠加；二是兄弟外边距叠加。
+
+1. 两个或多个毗邻的普通流中的块元素垂直方向上的 margin 会折叠
+2. 浮动元素/inline-block 元素/绝对定位元素的 margin 不会和垂直方向上的其他元素的 margin 折叠
+3. 创建了块级格式化上下文(BFC)的元素，不会和它的子元素发生 margin 折叠
+4. 元素自身的`margin-bottom`和`margin-top`相邻时也会折叠
+
+## BFC
+---
+
+如何创建BFC:
+1. float的值不是none。
+2. position的值不是static或者relative。
+3. display的值是inline-block、table-cell、flex、table-caption或者inline-flex
+4. overflow的值不是visible
+
+BFC的作用:
+1. 利用BFC避免margin重叠.
+```html
+<body>
+    <p>看看我的 margin是多少</p>
+    <p>看看我的 margin是多少</p>
+</body>
+```
+属于同一个BFC的两个相邻的Box会发生margin重叠，所以我们可以设置，两个不同的BFC，也就是我们可以让把第二个p用div包起来，然后激活它使其成为一个BFC.div设置`overflow: hidden;`
 ## 相关链接
 ---
 
