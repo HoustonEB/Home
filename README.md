@@ -1,4 +1,7 @@
 # Octopus
+---
+
+[![Build Status](https://travis-ci.org/HoustonEB/Home.svg?branch=master)](https://travis-ci.org/HoustonEB/Home)
 
 ## Build Setup
 
