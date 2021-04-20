@@ -1,4 +1,5 @@
 #!/bin/bash
+
 set -e
 run() {
     echo "Run: $@"
@@ -11,4 +12,5 @@ run "npm run build"
 run "mkdir output"
 run "zip -rq ./output/output.zip ../Home"
 run "ls"
-run "node ./deployServer.js $SERVERPASS"
+# shell中脚本执行的路径相对于shell执行时的路径,所以./deployServer.js会报找不到模块
+run "node ./scripts/deployServer.js $SERVERPASS"
