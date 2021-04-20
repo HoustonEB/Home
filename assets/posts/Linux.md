@@ -74,9 +74,9 @@ gunzip *
 #### chmod
 Linux chmod（英文全拼：change mode）命令是控制用户对文件的权限的命令
 Linux/Unix 的文件调用权限分为三级 : 文件所有者（Owner）、用户组（Group）、其它用户（Other Users）.
-![1](./linux/1.jpg)
+![1](./Linux/1.jpg)
 只有文件所有者和超级用户可以修改文件或目录的权限。可以使用绝对模式（八进制数字模式），符号模式指定文件的权限。
-![2](./linux/2.png)
+![2](./Linux/2.png)
 
 chmod可以用数字来表示权限如 :
 `chmod 777 file`

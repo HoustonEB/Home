@@ -5,5 +5,8 @@ run() {
     eval $@
 }
 run "ls"
-run "npm install"
-run "npm run build && node ./deployServer.js"
+run "npm ci"
+run "npm run build"
+run "zip -rq ./output/output.zip ../HOME"
+run "ls"
+run "node ./deployServer.js"
