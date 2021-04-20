@@ -1067,6 +1067,7 @@ console.log(sayHi.bind(person, 5));
 
 [一次弄懂Event Loop](https://juejin.cn/post/6844903764202094606)
 [JavaScript 运行机制详解：再谈Event Loop](http://www.ruanyifeng.com/blog/2014/10/event-loop.html)
+[JS 事件循环 event loop 经典面试题含答案](https://zhuanlan.zhihu.com/p/364698187)
 
 ## ajax实现原理及方法使用
 ---

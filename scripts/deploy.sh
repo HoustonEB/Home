@@ -1,3 +1,9 @@
 #!/bin/bash
-npm ci
-npm run build && node ./deployServer.js
+
+run() {
+    echo "Run: $@"
+    eval $@
+}
+run "ls"
+run "npm ci"
+run "npm run build && node ./deployServer.js"
