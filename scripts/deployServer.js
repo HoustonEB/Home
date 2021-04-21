@@ -11,11 +11,11 @@ const sftp = new SftpConnection({
     password: password
     // privateKey: readFileSync('/Users/v_yuzhuang01/.ssh/id_rsa')
 });
-let localPathPrefix = p.resolve(__dirname + '/../');
+let localPathPrefix = p.resolve(__dirname + '/../') + '/';
 console.log(localPathPrefix, 'localPathPrefix------')
 sftp.upload({
     localPathPrefix,
     // localPath: localPathPrefix + '{?(.nuxt|static|utils|plugins)/**,.npmrc,nuxt.config.js,package.json}',
-    localPath: p.resolve(localPathPrefix + '/output/output.zip'),
-    remotePath: '/usr/local/nginx/html/home-node-server/'
+    localPath: localPathPrefix + '?(output)/**',
+    remotePath: '/usr/local/nginx/html/home-node-server/resources'
 });
