@@ -7,7 +7,7 @@ module.exports = {
       instances: 'max',
       watch: [
         // 监控变化的目录，一旦变化，自动重启
-        'resources/pm2/version.json'
+        'resources/pm2/version.txt'
       ],
       ignore_watch: [
         // 忽视这些目录的变化
