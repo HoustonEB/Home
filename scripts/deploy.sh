@@ -9,6 +9,7 @@ echo $SERVERPASS
 run "ls"
 run "npm ci"
 run "npm run build"
+run "rm -rf output"
 run "mkdir output"
 run "zip -rq ./output/output.zip ../Home"
 run "ls"
