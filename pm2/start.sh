@@ -1,7 +1,8 @@
 # !/bin/bash
 set -e
 
-cd ./resources
+cd /usr/local/nginx/html/home-node-server/resources
+rm -rf node_modules/
 npm cache clean --force
-npm ci
-nuxt start
+npm i
+npm run nuxt-start

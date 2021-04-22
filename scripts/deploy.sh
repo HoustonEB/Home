@@ -1,6 +1,6 @@
 #!/bin/bash
-
 set -e
+
 run() {
     echo "Run: $@"
     eval $@
