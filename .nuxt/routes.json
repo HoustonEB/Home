@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Octopus",
+    "path": "/Octopus",
+    "component": "/Users/v_yuzhuang01/Documents/Home/pages/Octopus/index.vue",
+    "chunkName": "pages/Octopus/index",
+    "_name": "_8b8335a8"
+  },
+  {
+    "name": "Posts",
+    "path": "/Posts",
+    "component": "/Users/v_yuzhuang01/Documents/Home/pages/Posts/index.vue",
+    "chunkName": "pages/Posts/index",
+    "_name": "_0d8e4f20"
+  },
+  {
+    "name": "Posts-id",
+    "path": "/Posts/:id",
+    "component": "/Users/v_yuzhuang01/Documents/Home/pages/Posts/_id.vue",
+    "chunkName": "pages/Posts/_id",
+    "_name": "_70a59988"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/Users/v_yuzhuang01/Documents/Home/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_1e75b7fc"
+  }
+]
