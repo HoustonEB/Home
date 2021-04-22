@@ -8,7 +8,7 @@ run() {
 echo $SERVERPASS
 run "ls"
 run "echo {version: $(date +%Y-%m-%d~%H:%M)} > ./pm2/version.txt"
-run "npm ci"
+run "npm i"
 run "npm run build"
 # run "rm -rf output"
 # run "mkdir output"
