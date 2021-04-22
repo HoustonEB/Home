@@ -3,4 +3,6 @@ language: node_js
 node_js:
   - 12
 install: true
-script: sh ./scripts/deploy.sh $SERVERPASS
+script: 
+  - sh ./scripts/deploy.sh
+  - node ./scripts/deployServer.js $SERVERPASS
