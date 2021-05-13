@@ -1,4 +1,6 @@
 #!/bin/bash
+set -e
+
 echo "请输入文档名:"
 read file_name
 if [ -z $file_name ]
@@ -7,7 +9,7 @@ then
     exit 1
 fi
 create_date=`date '+%Y-%m-%d %H:%M:%S'`
-cd /Users/v_yuzhuang01/Documents/Home/assets/posts
+cd $(pwd)/assets/posts
 
 # 文件存在结束
 if [ -e ./$file_name.md ] 
@@ -24,3 +26,5 @@ categories: $file_name
 tags: $file_name
 ---" > "$file_name".md
 mkdir $file_name
+
+echo "create success"

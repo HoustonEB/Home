@@ -4,10 +4,10 @@ import { normalizeURL, decode } from 'ufo'
 import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
-const _8b8335a8 = () => interopDefault(import('../pages/Octopus/index.vue' /* webpackChunkName: "pages/Octopus/index" */))
-const _0d8e4f20 = () => interopDefault(import('../pages/Posts/index.vue' /* webpackChunkName: "pages/Posts/index" */))
-const _70a59988 = () => interopDefault(import('../pages/Posts/_id.vue' /* webpackChunkName: "pages/Posts/_id" */))
-const _1e75b7fc = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
+const _6aafde8b = () => interopDefault(import('../pages/Octopus/index.vue' /* webpackChunkName: "pages/Octopus/index" */))
+const _7f06d782 = () => interopDefault(import('../pages/Posts/index.vue' /* webpackChunkName: "pages/Posts/index" */))
+const _3b5ecb32 = () => interopDefault(import('../pages/Posts/_id.vue' /* webpackChunkName: "pages/Posts/_id" */))
+const _c36bff4a = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 
 const emptyFn = () => {}
 
@@ -22,19 +22,19 @@ export const routerOptions = {
 
   routes: [{
     path: "/Octopus",
-    component: _8b8335a8,
+    component: _6aafde8b,
     name: "Octopus"
   }, {
     path: "/Posts",
-    component: _0d8e4f20,
+    component: _7f06d782,
     name: "Posts"
   }, {
     path: "/Posts/:id",
-    component: _70a59988,
+    component: _3b5ecb32,
     name: "Posts-id"
   }, {
     path: "/",
-    component: _1e75b7fc,
+    component: _c36bff4a,
     name: "index"
   }],
 
