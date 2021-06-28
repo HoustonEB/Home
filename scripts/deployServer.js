@@ -1,6 +1,7 @@
 const SftpConnection = require('sftp-connection');
 const p = require('path');
 const { readFileSync } = require('fs');
+const shell = require('shelljs');
 const password = process.argv[2];
 
 console.log(password, 'password---------')
@@ -15,7 +16,10 @@ let localPathPrefix = p.resolve(__dirname + '/../') + '/';
 console.log(localPathPrefix, 'localPathPrefix------')
 sftp.upload({
     localPathPrefix,
-    localPath: localPathPrefix + '{?(.nuxt|static|utils|plugins|pm2)/**,.npmrc,nuxt.config.js,package.json,package-lock.json}',
+    localPath: localPathPrefix + '{?(.nuxt|static|utils|plugins|pm2)/**,.npmrc,nuxt.config.js,package.json,ecosystem.config.js,package-lock.json}',
     // localPath: localPathPrefix + '?(output)/**',
     remotePath: '/usr/local/nginx/html/home-node-server/resources/'
 });
+
+shell.echo('上传结束');
+shell.exit(0);
