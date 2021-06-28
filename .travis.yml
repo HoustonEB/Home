@@ -4,5 +4,5 @@ node_js:
   - 12
 install: true
 script: 
-  - sh ./scripts/deploy.sh
-  - node ./scripts/deployServer.js $SERVERPASS
+  # - sh ./scripts/deploy.sh
+  # - node ./scripts/upload.js $SERVERPASS

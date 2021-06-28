@@ -3095,8 +3095,8 @@ function wrapFunctional(options) {
 const components = {
   Logo: () => __webpack_require__.e(/* import() | components/logo */ 4).then(__webpack_require__.bind(null, 131)).then(c => wrapFunctional(c.default || c)),
   Anchor: () => __webpack_require__.e(/* import() | components/anchor */ 1).then(__webpack_require__.bind(null, 119)).then(c => wrapFunctional(c.default || c)),
-  AudioSpectrum: () => __webpack_require__.e(/* import() | components/audio-spectrum */ 3).then(__webpack_require__.bind(null, 135)).then(c => wrapFunctional(c.default || c)),
   ArticalList: () => __webpack_require__.e(/* import() | components/artical-list */ 2).then(__webpack_require__.bind(null, 130)).then(c => wrapFunctional(c.default || c)),
+  AudioSpectrum: () => __webpack_require__.e(/* import() | components/audio-spectrum */ 3).then(__webpack_require__.bind(null, 135)).then(c => wrapFunctional(c.default || c)),
   Header: () => Promise.resolve(/* import() */).then(__webpack_require__.bind(null, 106)).then(c => wrapFunctional(c.default || c)),
   PostDetail: () => __webpack_require__.e(/* import() | components/post-detail */ 5).then(__webpack_require__.bind(null, 129)).then(c => wrapFunctional(c.default || c)),
   ScrollTop: () => Promise.resolve(/* import() */).then(__webpack_require__.bind(null, 107)).then(c => wrapFunctional(c.default || c)),

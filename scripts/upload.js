@@ -16,7 +16,7 @@ let localPathPrefix = p.resolve(__dirname + '/../') + '/';
 console.log(localPathPrefix, 'localPathPrefix------')
 sftp.upload({
     localPathPrefix,
-    localPath: localPathPrefix + '{?(.nuxt|static|utils|plugins|pm2)/**,.npmrc,nuxt.config.js,package.json,ecosystem.config.js,package-lock.json}',
+    localPath: localPathPrefix + '{?(.nuxt|static|utils|plugins|pm2|dist)/**,.npmrc,nuxt.config.js,package.json,ecosystem.config.js,package-lock.json}',
     // localPath: localPathPrefix + '?(output)/**',
     remotePath: '/usr/local/nginx/html/home-node-server/resources/'
 });

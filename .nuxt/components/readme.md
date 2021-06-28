@@ -8,8 +8,8 @@ You can directly use them in pages and other components without the need to impo
 
 - `<Logo>` | `<logo>` (components/Logo.vue)
 - `<Anchor>` | `<anchor>` (components/Anchor/index.vue)
-- `<AudioSpectrum>` | `<audio-spectrum>` (components/AudioSpectrum/index.vue)
 - `<ArticalList>` | `<artical-list>` (components/ArticalList/index.vue)
+- `<AudioSpectrum>` | `<audio-spectrum>` (components/AudioSpectrum/index.vue)
 - `<Header>` | `<header>` (components/Header/index.vue)
 - `<PostDetail>` | `<post-detail>` (components/PostDetail/index.vue)
 - `<ScrollTop>` | `<scroll-top>` (components/ScrollTop/index.vue)
