@@ -5,11 +5,11 @@
   "Anchor": {
     "description": "Auto imported from components/Anchor/index.vue"
   },
-  "ArticalList": {
-    "description": "Auto imported from components/ArticalList/index.vue"
-  },
   "AudioSpectrum": {
     "description": "Auto imported from components/AudioSpectrum/index.vue"
+  },
+  "ArticalList": {
+    "description": "Auto imported from components/ArticalList/index.vue"
   },
   "Header": {
     "description": "Auto imported from components/Header/index.vue"
