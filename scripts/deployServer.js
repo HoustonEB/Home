@@ -21,5 +21,5 @@ sftp.upload({
     remotePath: '/usr/local/nginx/html/home-node-server/resources/'
 });
 
-shell.echo('上传结束');
-shell.exit(0);
+// shell.echo('上传结束');
+// shell.exit(0);
