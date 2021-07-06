@@ -56,7 +56,7 @@
                     v-if="playing" 
                     src="~/assets/images/pause.svg"
                     @click="pause"/>
-                    <audio id="header-music" :src="require('@/assets/sources/等你下课(with 杨瑞代)-周杰伦.mp3')" />
+                    <!-- <audio id="header-music" :src="require('@/assets/sources/等你下课(with 杨瑞代)-周杰伦.mp3')" /> -->
                 </div>
             </div>
         </div>

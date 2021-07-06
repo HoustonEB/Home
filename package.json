@@ -6,7 +6,7 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "pm2 start npm -i max --name home-server -- run nuxt-start",
-    "nuxt-start": "nuxt start",
+    "nuxt-start": "nuxt build && nuxt start",
     "generate": "nuxt generate",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint": "npm run lint:js",
