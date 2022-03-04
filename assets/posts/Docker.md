@@ -170,6 +170,13 @@ RUN 指令告诉docker在镜像内执行命令,安装了什么...
 
 docker build -t erp_image .
 ```
+### 自定义镜像
+docker commit 容器id 生成的镜像名
+`docker commit ea07b4960064 node-10`
+docker tag 镜像id yuzhuang/镜像名:tag
+`docker tag 9b3b301205f6 yuzhuang/node-10:v1.0.0`
+
+`docker push yuzhuang/node-10:v1.0.0`
 参数说明:
 - `-t`: 指定要创建的目标镜像名
 - `.`: **Dockerfile**文件所在目录,可以指定**Dockerfile**的绝对路径
@@ -190,3 +197,4 @@ docker tag 镜像ID,这里是860c279d2fec,用户名称,镜像源名(repository n
 
 ## 相关链接
 [Docker —— 从入门到实践](https://yeasy.gitbook.io/docker_practice/)
+[安装hoembrew-清华源](https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/)

@@ -122,3 +122,10 @@ echo '内容1' >> demo.txt 不覆盖
 | i | 编辑内容 |
 | esc | 退出操作 |
 | shift+z+z | 保存退出vi模式|
+
+### lsof
+查找端口号占用进程
+```bash
+lsof -i 8082
+kill -9 pid
+```
